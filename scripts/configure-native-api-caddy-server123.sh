@@ -25,7 +25,6 @@ site='''# JUMPER KIDS independent 3D world API and websocket, not the HTML front
 api-jumperkids3d.suaveforge.com {
     encode gzip zstd
     header {
-        Access-Control-Allow-Origin "https://jumperkids3d.suaveforge.com"
         Access-Control-Allow-Methods "GET, POST, OPTIONS"
         Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
         Vary "Origin"
@@ -36,6 +35,7 @@ api-jumperkids3d.suaveforge.com {
     }
     @preflight method OPTIONS
     handle @preflight {
+        header Access-Control-Allow-Origin "https://jumperkids3d.suaveforge.com"
         respond "" 204
     }
     handle {
@@ -43,6 +43,8 @@ api-jumperkids3d.suaveforge.com {
             transport http {
                 tls_insecure_skip_verify
             }
+            header_down -Access-Control-Allow-Origin
+            header_down Access-Control-Allow-Origin "https://jumperkids3d.suaveforge.com"
         }
     }
 }
