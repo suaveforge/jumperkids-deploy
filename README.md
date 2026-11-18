@@ -1,22 +1,30 @@
-# JumperKids — Public Preview Deployment
+# JumperKids — PUBLIC server123 deployment repository
 
-This PUBLIC repository contains only a safe, standalone playflow preview. The authoritative game source, guardian identity and all unshipped game content stay in the PRIVATE `suaveforge/jumperkids` repository.
+**Deliberate architecture:** `suaveforge/jumperkids` is PRIVATE source; `suaveforge/jumperkids-deploy` is PUBLIC deployment scripts and a deliberately public **standalone 2.5D preview artifact only**.
 
-## Current preview
+## Live preview deployment
 
-- `index.html`: zero-tracking, no-login, no-backend, standalone child-friendly playflow demo (egg, three strawberries, bunny bakery, home and factual local-only parent preview).
-- The current preview is a **2.5D storyboard**, **not** the HYTOPIA 3D production game.
-- No accounts, payments, child personal data, remote APIs, cookies, location tracking, analytics or live game services.
+- Intended hostname: **https://jumperkids.suaveforge.com**
+- Hosting stack: **server123 + isolated Docker + existing shared Caddy HTTPS + Spaceship DNS**, same hosting method as the original Jumper but in a separate container, project directory, port and Caddy site block.
+- First complete workflow: [JumperKids preview deployment](https://github.com/suaveforge/jumperkids/actions/runs/44231669989) — **SUCCESS**.
+- Server-side verified: static container HTTP 200, Spaceship DNS API record write HTTP 204 and readback verified, shared Caddy reloaded, HTTPS 200 for `jumperkids.suaveforge.com` using local domain resolution.
+- **Important:** Public DNS propagation / independent browser rendering / browser-trusted TLS status may not yet have been confirmed outside the server. HTTPS link can fail until DNS propagates.
+- This is **NOT** a running HYTOPIA 3D game. It is the interaction walkthrough: egg → three strawberries → bakery → home → a local observation report. No personal data, guardian identities, payments, analytics, remote APIs, cookies or database.
 
-## Planned deployment rule
+## Deployment files
 
-Public repo may contain only non-sensitive **rendered deploy artifacts**, public Pages workflow and documentation. Never commit API tokens, actual `.env`, auth secrets, DB credentials, private code, children's data or internal server address.
+- `index.html`: published public-only static HTML/JS preview; SHA256 expected `18ca1b55eadd570cea0fa18c39d61180314e6fc5d8b808c7112e26e434046d55`.
+- `scripts/deploy-static-preview-server123.sh`: safe update and local Docker HTTP check in `/home/jumperkids-preview` only.
+- `scripts/configure-spaceship-dns-server123.sh`: uses **pre-existing server-side** Spaceship secret file, adds only the `jumperkids` A record, refuses to overwrite conflict, verifies DNS API response.
+- `scripts/configure-caddy-server123.sh`: adds an independent `jumperkids.suaveforge.com` site to the server's Caddy, validates and rolls back on failure; original Jumper site config is not modified.
+- Workflow lives in **PRIVATE** `suaveforge/jumperkids/.github/workflows/deploy-preview-server123.yml` using the same private organization self-hosted runner that original Jumper uses. This PUBLIC repository intentionally has **no server credentials** and does not run public self-hosted Actions.
 
-Open the static preview from GitHub Pages once enabled via Settings > Pages > Build and deployment > Source = GitHub Actions.
+## Security and release boundaries
 
-## Play now / hosting status (2026-11-18)
+1. **Never** commit tokens, keys, passwords, private source, `.env` values, child data, Guardian identity information, or internal host details to this public repo. Only reviewed static artifacts / public deploy scripts.
+2. Source and runtime are independent of original `suaveforge/jumper`; do not replace the original Jumper container, Caddy site, keys or databases.
+3. Release **real 3D** only after a dedicated HYTOPIA engine/server build, actual browser rendering, verified identity/parental consent and persistence, device testing and child-safety review.
+4. Rollback: a pre-deploy HTML backup is retained under the isolated project's server-side backups directory. The Caddy script restores its prior config on validation/reload failure.
+5. For later feature previews update the PRIVATE source demo and the PUBLIC `index.html` artifact to byte-identical content before dispatching the PRIVATE deploy workflow. This deliberate parity gate prevents accidentally publishing private source.
 
-- **HTML preview (third-party, not verified on a physical browser):** [Open playable preview](https://htmlpreview.github.io/?https://github.com/suaveforge/jumperkids-deploy/blob/main/index.html). The static HTML/JS is byte-identical to the private repository's tested `demo/index.html` (Git blob `165ab7918d7a6756f18413f99dcc3f228a4267fa`).
-- **GitHub Pages deployment workflow configured:** `.github/workflows/pages.yml` (run [44227807565](https://github.com/suaveforge/jumperkids-deploy/actions/runs/44227807565)). It currently fails at `Configure Pages` with a 404 because this new repository does not yet have Pages enabled. It is not a game-script failure.
-- **One-time setup for canonical Pages URL:** Repository `Settings > Pages > Build and deployment > Source` → `GitHub Actions`, then re-run `Publish JumperKids standalone preview` from Actions. Do not put secrets or private source in this public repo.
-- **Important distinction:** This is only an interaction prototype. Real HYTOPIA 3D engine, authoritative state, guardian authentication, private DB and full child-facing deployment remain unbuilt/unverified.
+**Legacy GitHub Pages workflow has been deleted.** This project uses the same Spaceship/Caddy/server123 delivery pipeline as Jumper.
