@@ -28,3 +28,9 @@
 5. For later feature previews update the PRIVATE source demo and the PUBLIC `index.html` artifact to byte-identical content before dispatching the PRIVATE deploy workflow. This deliberate parity gate prevents accidentally publishing private source.
 
 **Legacy GitHub Pages workflow has been deleted.** This project uses the same Spaceship/Caddy/server123 delivery pipeline as Jumper.
+
+## Staff-only HYTOPIA 3D candidate (not child-production)
+
+A separate, credential-protected **development** site is configured at `https://jumperkids3d.suaveforge.com`, leaving the main public 2.5D preview unchanged. It uses Spaceship DNS, independent Caddy BasicAuth routing, and separate native HYTOPIA backend/frontend loopback services. No credentials are committed to this PUBLIC repository. [Private deployment/HTTPS verification](https://github.com/suaveforge/jumperkids/actions/runs/44236819931) passed HTTP 401 for anonymous access and HTTP 200 for authorized staff with a trusted certificate.
+
+**Visual acceptance is still blocked:** real Chromium showed a 3D WebGL canvas, live WebSocket frames, and kids HUD, but failed on block texture atlas `blocks/.atlas/atlas.ktx2`. See [private browser QA and screenshot artifact](https://github.com/suaveforge/jumperkids/actions/runs/44236364734). Do not advertise the staff world as a completed 3D game or permit actual children until guardian identity, consent, persistence, physical QA and security checks pass.
