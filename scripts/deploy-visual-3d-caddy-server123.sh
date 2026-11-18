@@ -71,9 +71,24 @@ try:
         raise RuntimeError('JK_VISUAL_CADDY_RELOAD_FAILED_ROLLED_BACK')
     # Validate actual public TLS+HTTP from inside the host Caddy network.
     host='jumperkids3d.suaveforge.com'
-    smoke=subprocess.run(['curl','-fsS','--max-time','14','--resolve',host+':443:127.0.0.1',
-        'https://'+host+'/'],capture_output=True,timeout=20)
-    if smoke.returncode or b'<canvas id="game"' not in smoke.stdout or b'<title>' not in smoke.stdout:
+    # Alpine python image has no curl. Request local Caddy over verified TLS
+    # with the correct SNI and Host header, without weakening verification.
+    import ssl,socket
+    try:
+        ctx=ssl.create_default_context()
+        with socket.create_connection(('127.0.0.1',443),timeout=12) as raw:
+            with ctx.wrap_socket(raw,server_hostname=host) as conn:
+                conn.sendall(('GET / HTTP/1.1\\r\\nHost: '+host+'\\r\\nConnection: close\\r\\n\\r\\n').encode())
+                chunks=[]
+                while True:
+                    part=conn.recv(32768)
+                    if not part:break
+                    chunks.append(part)
+                response=b''.join(chunks)
+    except Exception as exc:
+        response=b''
+        print('JK_VISUAL_HTTPS_VERIFY_ERROR='+type(exc).__name__)
+    if not response.startswith(b'HTTP/1.1 200') or b'<canvas id="game"' not in response or b'<title>' not in response:
         site.write_bytes(old)
         subprocess.run(cmd,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=35)
         raise RuntimeError('JK_VISUAL_HTTPS_SMOKE_FAILED_ROLLED_BACK')
