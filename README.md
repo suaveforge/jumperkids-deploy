@@ -29,8 +29,11 @@
 
 **Legacy GitHub Pages workflow has been deleted.** This project uses the same Spaceship/Caddy/server123 delivery pipeline as Jumper.
 
-## Staff-only HYTOPIA 3D candidate (not child-production)
+## HYTOPIA 3D technical preview — NO LOGIN
 
-A separate, credential-protected **development** site is configured at `https://jumperkids3d.suaveforge.com`, leaving the main public 2.5D preview unchanged. It uses Spaceship DNS, independent Caddy BasicAuth routing, and separate native HYTOPIA backend/frontend loopback services. No credentials are committed to this PUBLIC repository. [Private deployment/HTTPS verification](https://github.com/suaveforge/jumperkids/actions/runs/44236819931) passed HTTP 401 for anonymous access and HTTP 200 for authorized staff with a trusted certificate.
+- **Open technical preview:** https://jumperkids3d.suaveforge.com — no username, password or BasicAuth. The old credential file and BasicAuth deployment workflow were deleted. [Verified open HTTPS deployment](https://github.com/suaveforge/jumperkids/actions/runs/44240220215).
+- **World API + WebSocket:** `api-jumperkids3d.suaveforge.com`, separate from the HTML frontend as in the original Jumper system. API status JSON, .ktx2 and .glb assets, TLS and the single CORS origin passed [API deployment validation](https://github.com/suaveforge/jumperkids/actions/runs/44241235055).
+- The actual Chromium test verifies the WebGL canvas, kids HUD, WSS packets and 200 responses for atlas/model files. **It still fails at the KTX2 texture loader**, despite successful downloads: [browser log and screenshot](https://github.com/suaveforge/jumperkids/actions/runs/44241443403). The visual quality and mobile usability are **not accepted**.
+- This is a no-account, no-PII, no-commerce, no-public-chat **technical sandbox**, not a complete or safe child-facing release; the real guardian-only entrypoint remains fail-closed. The main https://jumperkids.suaveforge.com continues serving the existing 2.5D preview.
+- Live deployment scripts are `scripts/configure-open-3d-caddy-server123.sh`, `scripts/configure-native-api-dns-server123.sh` and `scripts/configure-native-api-caddy-server123.sh`. **Do not restore the deleted BasicAuth script**. This PUBLIC repo contains no credentials or private app source.
 
-**Visual acceptance is still blocked:** real Chromium showed a 3D WebGL canvas, live WebSocket frames, and kids HUD, but failed on block texture atlas `blocks/.atlas/atlas.ktx2`. See [private browser QA and screenshot artifact](https://github.com/suaveforge/jumperkids/actions/runs/44236364734). Do not advertise the staff world as a completed 3D game or permit actual children until guardian identity, consent, persistence, physical QA and security checks pass.
