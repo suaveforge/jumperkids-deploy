@@ -1,6 +1,6 @@
 # JumperKids — PUBLIC server123 deployment repository
 
-**Deliberate architecture:** `suaveforge/jumperkids` is PRIVATE source; `suaveforge/jumperkids-deploy` is PUBLIC deployment scripts and a deliberately public **standalone 2.5D preview artifact only**.
+**Deliberate architecture:** `suaveforge/jumperkids` is PRIVATE source; `suaveforge/jumperkids-deploy` is PUBLIC deployment scripts plus a deliberately public **standalone 2.5D preview artifact**. The playable 3D art-preview source is in the PRIVATE repository and its reviewed browser bundle is deployed from server123.
 
 ## Live preview deployment
 
@@ -23,17 +23,22 @@
 
 1. **Never** commit tokens, keys, passwords, private source, `.env` values, child data, Guardian identity information, or internal host details to this public repo. Only reviewed static artifacts / public deploy scripts.
 2. Source and runtime are independent of original `suaveforge/jumper`; do not replace the original Jumper container, Caddy site, keys or databases.
-3. Release **real 3D** only after a dedicated HYTOPIA engine/server build, actual browser rendering, verified identity/parental consent and persistence, device testing and child-safety review.
+3. The new 3D central-plaza **preview** is publicly viewable, but **child-facing production MMO** needs verified guardian identity/consent, persistent backend state, server-authoritative movement, device performance, accessibility and child-safety review.
 4. Rollback: a pre-deploy HTML backup is retained under the isolated project's server-side backups directory. The Caddy script restores its prior config on validation/reload failure.
 5. For later feature previews update the PRIVATE source demo and the PUBLIC `index.html` artifact to byte-identical content before dispatching the PRIVATE deploy workflow. This deliberate parity gate prevents accidentally publishing private source.
 
 **Legacy GitHub Pages workflow has been deleted.** This project uses the same Spaceship/Caddy/server123 delivery pipeline as Jumper.
 
-## HYTOPIA 3D technical preview — NO LOGIN
+## Current 3D art-preview deployed on Spaceship — NO LOGIN
 
-- **Open technical preview:** https://jumperkids3d.suaveforge.com — no username, password or BasicAuth. The old credential file and BasicAuth deployment workflow were deleted. [Verified open HTTPS deployment](https://github.com/suaveforge/jumperkids/actions/runs/44240220215).
-- **World API + WebSocket:** `api-jumperkids3d.suaveforge.com`, separate from the HTML frontend as in the original Jumper system. API status JSON, .ktx2 and .glb assets, TLS and the single CORS origin passed [API deployment validation](https://github.com/suaveforge/jumperkids/actions/runs/44241235055).
-- The actual Chromium test verifies the WebGL canvas, kids HUD, WSS packets and 200 responses for atlas/model files. **It still fails at the KTX2 texture loader**, despite successful downloads: [browser log and screenshot](https://github.com/suaveforge/jumperkids/actions/runs/44241443403). The visual quality and mobile usability are **not accepted**.
-- This is a no-account, no-PII, no-commerce, no-public-chat **technical sandbox**, not a complete or safe child-facing release; the real guardian-only entrypoint remains fail-closed. The main https://jumperkids.suaveforge.com continues serving the existing 2.5D preview.
-- Live deployment scripts are `scripts/configure-open-3d-caddy-server123.sh`, `scripts/configure-native-api-dns-server123.sh` and `scripts/configure-native-api-caddy-server123.sh`. **Do not restore the deleted BasicAuth script**. This PUBLIC repo contains no credentials or private app source.
+**https://jumperkids3d.suaveforge.com** now hosts the NEW art-first, custom-built **Three.js 3D egg-hatching and mint baby-dragon following preview**, not the rejected old HYTOPIA voxel test world.
 
+- First core story: pastel toy village central plaza → move or press **알 깨우기** → 3D egg hatches, star particles and short original chime → cute rounded dragon appears and follows the avatar. PC WASD/mouse click, mobile touch joystick and large action button. No account required.
+- Source: PRIVATE `suaveforge/jumperkids/studio/`. Built offline on server123 using real model assets and KTX2 decoder, staged in dedicated Docker `sf-jumperkids-artstudio` at loopback `127.0.0.1:18846`.
+- Real desktop/mobile Chromium test of egg hatch and companion following [run 44248041085](https://github.com/suaveforge/jumperkids/actions/runs/44248041085) PASS after correcting poor first assets, buried ground mesh and portrait camera clipping. Actual rendered screenshot artifacts attached to that run.
+- Current public-site Caddy promotion with backup and rollback via [successful GitHub Actions run 44249439740](https://github.com/suaveforge/jumperkids/actions/runs/44249439740). HTTPS root, JS, CSS, GLB and Basis WASM HTTP 200; original Jumper and independent 2.5D Kids preview unaffected. Exact public deployment script: `scripts/promote-artstudio-server123.sh`.
+- Separate `api-jumperkids3d.suaveforge.com` remains the **independent legacy HYTOPIA MMO sandbox API**, online and healthy, but **not yet connected to the new Three.js art-first preview**. Do not claim real multiplayer, secure parental accounts or persistent educational progress.
+- The old `scripts/configure-open-3d-caddy-server123.sh` was for the rejected voxel test and must NOT be re-run, because it would revert the new art-first frontend. The current intended site update path is ONLY `scripts/promote-artstudio-server123.sh` after private visual/functional QA.
+- This public site is a **zero-login technical play preview** without PII, advertising, payment or chat. It is not the complete child-safe educational MMO. Legal parental consent, verified auth, persistent observations, pet inventory and polished bakery/house/berry interactions remain to be built.
+
+The sibling **https://jumperkids.suaveforge.com** still serves the earlier independent 2.5D walkthrough. Both hostnames use server123/Caddy/Spaceship, not GitHub Pages.
