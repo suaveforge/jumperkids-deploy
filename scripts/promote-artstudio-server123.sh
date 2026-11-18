@@ -68,7 +68,9 @@ try:
     time.sleep(1)
     try:
         with urllib.request.urlopen('https://jumperkids3d.suaveforge.com/',timeout=20) as f:
-            if f.status!=200 or b'Magic' in f.read(512):pass
+            body=f.read(16384)
+            if f.status!=200 or '<title>꿈꾸는 마을 · 마법의 알</title>'.encode() not in body:
+                raise RuntimeError('JK_ART_PUBLIC_HTML_MISMATCH')
         with urllib.request.urlopen('https://jumperkids3d.suaveforge.com/game.js',timeout=15) as f:
             if f.status!=200 or len(f.read(1024))<500:raise RuntimeError('JK_ART_JS_INVALID')
         with urllib.request.urlopen('https://jumperkids3d.suaveforge.com/assets/pink-bunny.glb',timeout=15) as f:
