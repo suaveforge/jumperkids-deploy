@@ -52,7 +52,8 @@ fcntl.flock(fd,fcntl.LOCK_EX)
 try:
     previous=main.read_bytes()
     prev_snippet=snippet.read_text()
-    import_count=previous.count(line.encode())
+    # Count exact import lines only: the API import shares this path prefix.
+    import_count=sum(1 for row in previous.decode(errors='replace').splitlines() if row.strip()==line)
     if import_count>1:
         raise RuntimeError('JK3D_IMPORT_DUPLICATED_REFUSE_OVERWRITE')
     next_main=previous if import_count==1 else previous.rstrip()+b'\n\n'+line.encode()+b'\n'
