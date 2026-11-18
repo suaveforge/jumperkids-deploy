@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>꿈꾸는 마을 | 상호작용 검증 데모</title>
+<style>
+:root{color-scheme:light;--ink:#3d3153;--pink:#ff93be;--mint:#90e2cc;--paper:#fff9ed}*{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:ui-rounded,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;background:linear-gradient(155deg,#adccff,#fcddf1 52%,#fff3cb);color:var(--ink);display:grid;place-items:center;padding:12px}.shell{width:min(1280px,100%);margin:auto;position:relative}.banner{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 6px 10px;font-size:clamp(13px,1.5vw,18px)}.brand{font-weight:1000;color:#594078;letter-spacing:-.02em}.brand b{color:#e55fa1}.dev{font-size:11px;color:#6b5b7b;background:#ffffffab;border-radius:999px;padding:6px 10px}.game{position:relative;width:100%;aspect-ratio:16/9;border-radius:25px;overflow:hidden;box-shadow:0 24px 72px #50375d40, inset 0 0 0 5px #fff9;border:6px solid #fff9}.game svg{width:100%;height:100%;display:block;touch-action:manipulation}.spot{cursor:pointer;outline:none;transform-box:fill-box;transform-origin:center;transition:filter .18s,transform .18s}.spot:hover,.spot:focus-visible{filter:drop-shadow(0 0 12px #fff);transform:scale(1.035)}.spot:active{transform:scale(.97)}.ui{position:absolute;inset:0;pointer-events:none}.ui button{pointer-events:auto;cursor:pointer;border:0;font:inherit}.top-actions{position:absolute;top:15px;right:15px;display:flex;gap:9px}.bubble-button{background:linear-gradient(#fff,#fff0e0);width:clamp(54px,6.2vw,70px);height:clamp(54px,6.2vw,70px);border:4px solid #fff;border-radius:22px;box-shadow:0 8px 0 #8d73aa55,0 9px 15px #34235a2d;font-size:clamp(24px,3vw,34px)}.bubble-button:focus-visible{outline:4px solid #664dff}.bubble-button:active{transform:translateY(4px);box-shadow:0 3px 0 #8d73aa55}.dialog{position:absolute;top:14px;left:14px;max-width:min(44%,460px);background:#fffbf0eb;border:4px solid white;border-radius:25px;padding:12px 16px;box-shadow:0 10px 20px #67527920}.dialog strong{font-weight:1000;font-size:clamp(14px,1.7vw,23px);display:block}.dialog p{font-size:clamp(12px,1.3vw,17px);line-height:1.35;margin:6px 0 0}.bottom{position:absolute;bottom:18px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:end;gap:10px}.basket{background:#ffffffeb;border:4px solid white;border-radius:24px;padding:10px 15px;box-shadow:0 8px 25px #63416838;font-size:clamp(17px,2vw,25px);font-weight:1000}.hint{background:#ffffffdb;border-radius:16px;padding:10px 14px;max-width:38%;font-size:clamp(11px,1.15vw,15px);font-weight:800;text-align:right}.bounce{animation:bounce 2.2s ease-in-out infinite}.float{animation:float 3.4s ease-in-out infinite}.glow{animation:glow 1.6s ease-in-out infinite}@keyframes bounce{50%{transform:translateY(-9px)}}@keyframes float{50%{transform:translateY(-6px)}}@keyframes glow{50%{filter:drop-shadow(0 0 16px #fff3c0)}}.hidden{display:none!important}.footer{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 8px;color:#55446d;font-size:13px}.footer button{font-size:13px;border:2px solid white;background:#fffafa;border-radius:13px;padding:9px 12px;font-weight:900;color:#684e89;cursor:pointer}.report{position:fixed;inset:0;background:#2b234ba8;z-index:4;display:grid;place-items:center;padding:20px}.report-card{background:#fffdf5;border-radius:26px;width:min(440px,95vw);padding:26px;box-shadow:0 20px 80px #1c163855}.report-card h2{margin:0}.report-card p{line-height:1.7}.report-card button{border:0;border-radius:14px;background:#7459b7;color:white;font-weight:800;padding:14px;width:100%;cursor:pointer}.water{animation:float 4s infinite ease-in-out;transform-origin:50% 50%}@media(max-width:660px){body{padding:0;background:#e5c2eb}.shell{height:100%;display:flex;flex-direction:column;justify-content:center}.banner{padding:6px 10px;font-size:13px}.dev{font-size:9px}.game{border-width:3px;border-radius:16px}.dialog{top:7px;left:7px;border-width:2px;border-radius:14px;padding:7px 9px;max-width:46%}.dialog p{margin-top:3px}.top-actions{top:7px;right:7px;gap:3px}.bubble-button{width:48px;height:48px;border-radius:15px;border-width:2px;font-size:24px}.bottom{bottom:7px;left:8px;right:8px}.basket{font-size:14px;padding:6px 9px;border-radius:13px;border-width:2px}.hint{font-size:10px;max-width:39%;padding:6px 9px}.footer{padding:5px 12px;font-size:10px}.footer button{padding:5px 7px;font-size:10px}}@media(max-width:480px) and (orientation:portrait){.game{aspect-ratio:4/5}.game svg{width:100%;height:100%;object-fit:cover}.dialog{max-width:58%}.bottom .hint{display:none}.footer{flex-wrap:wrap}.banner{font-size:11px}.bubble-button{width:44px;height:44px;font-size:22px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="banner"><div class="brand">🌈 <b>꿈꾸는</b> 마을 <span aria-label="원본 점퍼와 분리된 개발 데모"> · Jumper Kids</span></div><div class="dev">독립 상호작용 데모 · 서버 저장 없음</div></header>
+  <main class="game" aria-label="꿈꾸는 마을 놀이 월드">
+    <svg id="scene" viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="동물 친구들이 있는 마법 마을">
+      <defs>
+        <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#88c9ff"/><stop offset="1" stop-color="#d4f4ff"/></linearGradient>
+        <linearGradient id="grass" x2="0" y2="1"><stop stop-color="#b6ec81"/><stop offset="1" stop-color="#62d69c"/></linearGradient>
+        <linearGradient id="roof" x2="0" y2="1"><stop stop-color="#ff8cbb"/><stop offset="1" stop-color="#e4548d"/></linearGradient>
+        <linearGradient id="path" x2="0" y2="1"><stop stop-color="#fff5d5"/><stop offset="1" stop-color="#f5d9b9"/></linearGradient>
+        <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#4c977d" flood-opacity=".3"/></filter>
+        <pattern id="flower" width="70" height="54" patternUnits="userSpaceOnUse"><circle cx="10" cy="20" r="4" fill="#fff"/><circle cx="15" cy="16" r="4" fill="#fff"/><circle cx="19" cy="21" r="4" fill="#fff"/><circle cx="14" cy="24" r="4" fill="#fff"/><circle cx="14" cy="20" r="3" fill="#f8bb4e"/></pattern>
+      </defs>
+      <rect width="1200" height="675" fill="url(#sky)"/>
+      <circle cx="1030" cy="105" r="62" fill="#fff5bc" opacity=".92"/>
+      <g fill="#fff" opacity=".82"><ellipse cx="140" cy="110" rx="77" ry="25"/><ellipse cx="100" cy="91" rx="40" ry="27"/><ellipse cx="510" cy="75" rx="70" ry="18"/><ellipse cx="548" cy="55" rx="35" ry="24"/><ellipse cx="890" cy="148" rx="95" ry="20"/></g>
+      <path d="M0 325Q160 165 335 295T645 278T1200 310V675H0Z" fill="#a3e3ac"/>
+      <path d="M0 374Q280 270 520 343T1000 310T1200 380V675H0Z" fill="url(#grass)"/>
+      <path d="M0 475C270 416 398 466 608 431S1025 392 1200 452V675H0Z" fill="#7ed79a"/>
+      <path d="M0 480C250 416 450 450 600 410S940 390 1200 450V675H0Z" fill="url(#flower)" opacity=".85"/>
+      <path class="water" d="M0 545C200 494 244 565 368 526S580 457 717 500S1020 540 1200 486V578C976 634 830 582 700 552S469 559 332 590S127 557 0 640Z" fill="#8beaf0" opacity=".95"/>
+      <path d="M120 675C240 562 390 470 565 442Q725 428 833 496T1170 675Z" fill="url(#path)" opacity=".95"/>
+      <g filter="url(#shadow)">
+       <g id="house" class="spot float" data-action="home" tabindex="0" role="button" aria-label="우리집 꾸미기">
+        <rect x="93" y="283" width="290" height="199" rx="31" fill="#fff0d0" stroke="#fcce9b" stroke-width="12"/>
+        <path d="M60 316L216 185L414 311Q423 323 400 330L75 330Q52 327 60 316Z" fill="url(#roof)" stroke="#ffd4df" stroke-width="14"/>
+        <ellipse cx="228" cy="260" rx="31" ry="34" fill="#fff5a9" stroke="#efc286" stroke-width="11"/>
+        <rect x="240" y="367" width="79" height="115" rx="38" fill="#cf9ac9" stroke="#fff8e8" stroke-width="12"/>
+        <rect x="121" y="350" width="67" height="65" rx="21" fill="#a9eafb" stroke="#fff" stroke-width="11"/><path d="M154 348v69m-33-35h67" stroke="#fff" stroke-width="6"/>
+        <text x="238" y="180" text-anchor="middle" font-size="34">🏠</text>
+       </g>
+       <g id="bakery" class="spot" data-action="bakery" tabindex="0" role="button" aria-label="토끼 빵집에 딸기 전달하기">
+        <rect x="840" y="284" width="282" height="205" rx="36" fill="#ffeaca" stroke="#ffc7a8" stroke-width="13"/>
+        <path d="M814 315L970 197L1148 307Q1150 325 1130 330H822Q806 329 814 315Z" fill="#f7a862" stroke="#fff0bc" stroke-width="15"/>
+        <rect x="844" y="335" width="271" height="59" rx="16" fill="#fff6ef"/>
+        <path d="M852 345h263v35H852Z" fill="#ffbcd5"/>
+        <path d="M854 345l30 35 34-35 33 35 32-35 33 35 33-35 32 35 36-35" fill="none" stroke="white" stroke-width="16"/>
+        <rect x="886" y="410" width="177" height="75" rx="17" fill="#b77b5f" stroke="#fff9d9" stroke-width="12"/>
+        <text x="970" y="278" text-anchor="middle" font-size="53">🥖</text>
+       </g>
+      </g>
+      <g id="trees" pointer-events="none">
+       <rect x="493" y="233" width="33" height="178" rx="17" fill="#bd916d"/><circle cx="485" cy="221" r="78" fill="#81ce80"/><circle cx="555" cy="228" r="60" fill="#62bb86"/><circle cx="457" cy="264" r="51" fill="#a2e6a2"/>
+       <circle cx="480" cy="230" r="12" fill="#ffdf5f"/><circle cx="540" cy="236" r="10" fill="#ffdf5f"/><circle cx="451" cy="267" r="11" fill="#ffd95f"/>
+      </g>
+      <g id="berries" filter="url(#shadow)">
+       <g class="spot bounce" data-action="berry-1" tabindex="0" role="button" aria-label="첫 번째 딸기 덤불">
+         <ellipse cx="440" cy="528" rx="69" ry="29" fill="#3cbb71"/><ellipse cx="428" cy="508" rx="55" ry="35" fill="#5bce7b"/><text x="414" y="520" font-size="35" aria-hidden="true">🍓</text>
+       </g>
+       <g class="spot" data-action="berry-2" tabindex="0" role="button" aria-label="두 번째 딸기 덤불">
+         <ellipse cx="555" cy="560" rx="65" ry="31" fill="#3ab979"/><ellipse cx="560" cy="539" rx="51" ry="34" fill="#6fcf7d"/><text x="550" y="555" font-size="36" aria-hidden="true">🍓</text>
+       </g>
+       <g class="spot bounce" data-action="berry-3" tabindex="0" role="button" aria-label="세 번째 딸기 덤불">
+         <ellipse cx="678" cy="526" rx="65" ry="28" fill="#40b97b"/><ellipse cx="685" cy="506" rx="54" ry="34" fill="#6bd282"/><text x="665" y="524" font-size="35" aria-hidden="true">🍓</text>
+       </g>
+      </g>
+      <g id="egg" class="spot glow bounce" data-action="egg" tabindex="0" role="button" aria-label="빛나는 알 깨우기">
+        <ellipse cx="584" cy="446" rx="73" ry="18" fill="#5b9e71" opacity=".35"/>
+        <path d="M529 402Q529 332 580 327Q636 328 638 402Q635 460 579 460Q526 456 529 402Z" fill="#fff5de" stroke="#ffc9df" stroke-width="15"/>
+        <path d="M544 398Q576 369 620 392" fill="none" stroke="#b9dfec" stroke-width="11" stroke-linecap="round"/>
+        <text x="583" y="421" text-anchor="middle" font-size="35">✨</text>
+      </g>
+      <g id="dragon" class="hidden float" data-action="dragon" tabindex="0" role="button" aria-label="민트 아기 용 쓰다듬기">
+        <ellipse cx="627" cy="449" rx="71" ry="23" fill="#448c77" opacity=".26"/>
+        <path d="M640 404Q700 335 709 415Q693 435 661 438Z" fill="#71d7c3" stroke="#4eae9e" stroke-width="7"/>
+        <ellipse cx="609" cy="404" rx="59" ry="52" fill="#90e2d1" stroke="#45b9aa" stroke-width="8"/>
+        <ellipse cx="587" cy="395" rx="13" ry="20" fill="white"/><ellipse cx="629" cy="395" rx="13" ry="20" fill="white"/>
+        <ellipse cx="592" cy="396" rx="7" ry="12" fill="#333851"/><ellipse cx="633" cy="396" rx="7" ry="12" fill="#333851"/>
+        <ellipse cx="574" cy="419" rx="10" ry="7" fill="#f5a2aa"/><ellipse cx="648" cy="420" rx="10" ry="7" fill="#f5a2aa"/>
+        <path d="M601 420Q612 437 627 420" fill="none" stroke="#775d7b" stroke-width="6" stroke-linecap="round"/>
+        <path d="M572 348L558 328L585 334M624 345L639 324L644 355" fill="#fae2a1" stroke="#55af9a" stroke-width="6"/>
+        <path d="M567 439Q556 457 538 448M646 440Q663 455 674 448" stroke="#4fb8aa" stroke-width="12" stroke-linecap="round"/>
+      </g>
+      <g id="bunny" class="spot float" data-action="bakery" tabindex="0" role="button" aria-label="빵집 토끼">
+        <ellipse cx="953" cy="430" rx="53" ry="46" fill="#fff7ed" stroke="#eccbbf" stroke-width="6"/>
+        <ellipse cx="930" cy="357" rx="17" ry="54" fill="#fff7ed" stroke="#eccbbf" stroke-width="6"/><ellipse cx="978" cy="357" rx="17" ry="54" fill="#fff7ed" stroke="#eccbbf" stroke-width="6"/>
+        <ellipse cx="930" cy="357" rx="7" ry="33" fill="#ffbfd1"/><ellipse cx="978" cy="357" rx="7" ry="33" fill="#ffbfd1"/>
+        <ellipse cx="939" cy="418" rx="5" ry="9" fill="#58425d"/><ellipse cx="971" cy="418" rx="5" ry="9" fill="#58425d"/>
+        <circle cx="953" cy="432" r="6" fill="#eab0bd"/><path d="M943 440Q955 449 968 440" stroke="#9e6d80" fill="none" stroke-width="4"/>
+        <path d="M926 462Q953 440 980 460" fill="#eb6ca2"/>
+        <text x="955" y="490" text-anchor="middle" font-size="22">🧁</text>
+      </g>
+      <g id="avatar" class="float" pointer-events="none">
+        <ellipse cx="742" cy="596" rx="63" ry="15" fill="#3e9d77" opacity=".22"/>
+        <rect x="713" y="531" width="64" height="70" rx="23" fill="#ffd2de" stroke="#ef8aaf" stroke-width="7"/>
+        <circle cx="746" cy="490" r="47" fill="#ffdebe" stroke="#c1886b" stroke-width="6"/>
+        <path d="M700 483Q702 419 758 439Q792 445 792 473Q757 455 727 470Z" fill="#77504c"/>
+        <path d="M702 456Q746 424 791 456" fill="none" stroke="#ffc3ce" stroke-width="17"/>
+        <circle cx="732" cy="494" r="5" fill="#53455b"/><circle cx="762" cy="494" r="5" fill="#53455b"/>
+        <path d="M740 510q8 9 15 0" fill="none" stroke="#b95f77" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="720" cy="509" r="6" fill="#ffb3ad"/><circle cx="770" cy="509" r="6" fill="#ffb3ad"/>
+        <path d="M718 594L712 615M769 594L777 615" stroke="#d17a90" stroke-width="15" stroke-linecap="round"/>
+      </g>
+      <g id="basket" class="hidden" pointer-events="none"><ellipse cx="790" cy="547" rx="29" ry="19" fill="#c28c5c"/><path d="M768 545Q768 515 790 515Q813 516 813 545" fill="none" stroke="#a77952" stroke-width="9"/><text id="basket-icons" x="790" y="548" font-size="24" text-anchor="middle">🍓</text></g>
+      <g id="sparkles" pointer-events="none"><text x="360" y="240" font-size="31" class="float">✨</text><text x="805" y="230" font-size="28" class="bounce">✨</text><text x="104" y="470" font-size="30" class="float">🌷</text></g>
+    </svg>
+    <div class="ui">
+      <div class="dialog" role="status" aria-live="polite"><strong id="dialogTitle">✨ 신기한 알이 있어!</strong><p id="dialogText">반짝이는 알을 톡 눌러볼까?</p></div>
+      <nav class="top-actions" aria-label="게임 컨트롤"><button class="bubble-button" id="homeButton" aria-label="우리집">🏠</button><button class="bubble-button" id="bagButton" aria-label="딸기 바구니">🎒</button><button class="bubble-button" id="resetButton" aria-label="놀이 처음부터">🔄</button></nav>
+      <div class="bottom"><div class="basket" id="basketText">🧺 딸기 0 / 3</div><div class="hint" id="hintText">🌟 알을 터치하면 친구가 나와!</div></div>
+    </div>
+  </main>
+  <div class="footer"><span>🧸 실제 게임 월드 연결 전 상호작용 검증용 · 서버 저장/실결제/아동정보 수집 없음</span><button id="parentPreview">보호자 리포트 데모</button></div>
+</div>
+<div class="report hidden" id="report" role="dialog" aria-modal="true" aria-labelledby="reportTitle"><div class="report-card"><h2 id="reportTitle">🌷 오늘의 놀이 이야기</h2><p id="reportBody"></p><p style="font-size:12px;color:#837b91">개발용 로컬 이벤트만 표시합니다. 교육 효과를 측정하거나 개인정보를 저장하지 않습니다.</p><button id="closeReport">마을로 돌아가기</button></div></div>
+<script>
+'use strict';
+const state={hatched:false,picked:new Set(),bakery:false,house:false,pets:0,events:[]};
+const byId=id=>document.getElementById(id);
+const tell=(title,text,hint)=>{byId('dialogTitle').textContent=title;byId('dialogText').textContent=text;byId('hintText').textContent=hint};
+function record(type){state.events.push({type,at:Date.now()});}
+function render(){
+ byId('egg').classList.toggle('hidden',state.hatched);
+ byId('dragon').classList.toggle('hidden',!state.hatched);
+ for(let n=1;n<=3;n++){const el=document.querySelector('[data-action="berry-'+n+'"]');el.style.opacity=state.picked.has(n)?'.3':'1';el.setAttribute('aria-disabled',state.picked.has(n)?'true':'false')}
+ byId('basketText').textContent='🧺 딸기 '+state.picked.size+' / 3';
+ byId('basket').classList.toggle('hidden',state.picked.size===0);
+ byId('basket-icons').textContent='🍓'.repeat(state.picked.size);
+}
+function action(name){
+ if(name==='egg'){
+  if(state.hatched){tell('🐉 반가워!','친구가 방긋 웃으며 따라와!','딸기를 찾아보자!');return}
+  state.hatched=true;state.pets=1;record('pet_hatched');
+  tell('🐉 용 친구가 태어났어!','우리 같이 토끼 빵집에 가볼까?','🍓 딸기 세 개를 찾아보자');render();return;
+ }
+ if(name==='dragon'){
+  if(!state.hatched)return;
+  record('pet_petted');tell('💕 친구가 좋아해!','용이 살랑살랑 꼬리를 흔들어.','딸기 덤불을 톡 터치해 봐!');return;
+ }
+ if(name.startsWith('berry-')){
+  if(!state.hatched){tell('🥚 먼저 친구를 만나자!','반짝이는 알을 살짝 눌러 줘.','알부터 터치해 봐');return}
+  const number=Number(name.split('-')[1]);
+  if(state.picked.has(number)){tell('🍓 이미 딴 딸기야!','다른 덤불에도 딸기가 있어.','다른 딸기 덤불을 찾아봐!');return}
+  state.picked.add(number);record('strawberry_picked');
+  if(state.picked.size===3)tell('🎉 딸기 세 개 완성!','이제 오른쪽 토끼 빵집에 가져가자.','빵집 토끼를 터치해 봐!');
+  else tell('🍓 딸기를 찾았어!','지금 '+state.picked.size+'개야. 다른 딸기는 어디 있을까?','딸기 그림이 있는 덤불을 찾아봐!');
+  render();return;
+ }
+ if(name==='bakery'){
+  if(!state.hatched){tell('🐰 토끼가 기다리고 있어!','먼저 반짝이는 알에서 친구를 만나자.','알을 톡 터치해 봐!');return}
+  if(state.picked.size<3){tell('🐰 토끼의 부탁','빵 위에 올릴 딸기 세 개를 가져와 줘!','딸기 '+(3-state.picked.size)+'개를 더 찾아봐!');return}
+  if(state.bakery){tell('🎂 케이크가 완성됐어!','토끼가 고마워하며 손을 흔들어.','이제 우리집을 꾸며보자!');return}
+  state.bakery=true;record('bakery_completed');
+  tell('🎂 딸기 케이크 완성!','토끼가 행복하게 춤을 춰! 우리집도 꾸밀까?','🏠 왼쪽 우리집을 눌러봐!');return;
+ }
+ if(name==='home'){
+  if(!state.hatched){tell('🏠 이 집은 누구 집일까?','우리 친구를 먼저 만나면 같이 꾸밀 수 있어!','알을 먼저 눌러봐!');return}
+  if(!state.bakery){tell('🏠 여기가 우리집이야!','먼저 토끼 빵집에 딸기를 가져다주자.','오른쪽 빵집에 가보자!');return}
+  if(!state.house){state.house=true;record('house_decorated');tell('🌸 집에 꽃이 피었어!','와! 내가 꾸민 우리집이야. 오늘 정말 멋졌어!','오늘의 놀이가 완성됐어!')}
+  else tell('🏠 멋진 우리집!','우리 친구와 언제든 더 놀 수 있어.','보호자 리포트도 확인할 수 있어!');
+  return;
+ }
+}
+document.querySelectorAll('[data-action]').forEach(el=>{
+ el.addEventListener('click',()=>action(el.dataset.action));
+ el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();action(el.dataset.action)}});
+});
+byId('homeButton').addEventListener('click',()=>action('home'));
+byId('bagButton').addEventListener('click',()=>tell('🎒 나의 바구니','딸기 '+state.picked.size+'개를 모았어!','🍓 덤불을 눌러 과일을 모아봐!'));
+byId('resetButton').addEventListener('click',()=>{state.hatched=false;state.picked.clear();state.bakery=false;state.house=false;state.pets=0;state.events=[];tell('✨ 신기한 알이 있어!','반짝이는 알을 톡 눌러볼까?','알을 터치하면 친구가 나와!');render()});
+byId('parentPreview').addEventListener('click',()=>{
+ const count=t=>state.events.filter(e=>e.type===t).length;
+ byId('reportBody').textContent='펫 탄생: '+count('pet_hatched')+'회 · 딸기 집기: '+count('strawberry_picked')+'회 · 빵집 완료: '+count('bakery_completed')+'회 · 집 꾸미기: '+count('house_decorated')+'회. 모두 실제 데모 행동 이벤트 수만 표시합니다.';
+ byId('report').classList.remove('hidden');
+});
+byId('closeReport').addEventListener('click',()=>byId('report').classList.add('hidden'));
+render();
+</script>
+</body>
+</html>
