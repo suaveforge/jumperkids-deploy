@@ -112,7 +112,7 @@ if new_expr not in index.read_text():
 print('JK3D_GUARDED_CADDY=RELOADED')
 print('JK3D_CLIENT_PUBLIC_JOIN=OWN_AUTHENTICATED_HOST')
 print('JK3D_ORIGINAL_JUMPER_CADDY_SITE=UNMODIFIED')
-# Temporary staff QA password output appears in PRIVATE GitHub Actions logs only.
+# Never emit staff credentials into workflow logs; provide staff access through secure server-side credential provisioning.
 print('JK3D_STAFF_USERNAME=staff')
-print('JK3D_STAFF_PASSWORD='+password)
+print('JK3D_STAFF_PASSWORD=NOT_LOGGED_ROTATION_REQUIRED_FOR_PREVIOUS_EXPOSURE')
 PY
