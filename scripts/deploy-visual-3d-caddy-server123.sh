@@ -78,7 +78,7 @@ try:
         ctx=ssl.create_default_context()
         with socket.create_connection(('127.0.0.1',443),timeout=12) as raw:
             with ctx.wrap_socket(raw,server_hostname=host) as conn:
-                conn.sendall(('GET / HTTP/1.1\\r\\nHost: '+host+'\\r\\nConnection: close\\r\\n\\r\\n').encode())
+                conn.sendall(('GET / HTTP/1.1\r\nHost: '+host+'\r\nConnection: close\r\n\r\n').encode())
                 chunks=[]
                 while True:
                     part=conn.recv(32768)
