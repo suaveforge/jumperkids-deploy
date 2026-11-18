@@ -27,7 +27,7 @@ site='''# JUMPER KIDS unrestricted technical 3D preview (NOT a child-ready servi
 jumperkids3d.suaveforge.com {
     encode gzip zstd
     @client {
-        path / /index.html /assets/* /jk-client.js /jk-client.css
+        path / /index.html /assets/* /basis/* /images/* /jk-client.js /jk-client.css
     }
     handle @client {
         reverse_proxy 127.0.0.1:18838
