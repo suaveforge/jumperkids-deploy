@@ -29,16 +29,15 @@
 
 **Legacy GitHub Pages workflow has been deleted.** This project uses the same Spaceship/Caddy/server123 delivery pipeline as Jumper.
 
-## Current 3D art-preview deployed on Spaceship — NO LOGIN
+## Current JumperKids 3D technical play preview — NO LOGIN
 
-**https://jumperkids3d.suaveforge.com** now hosts the NEW art-first, custom-built **Three.js 3D egg-hatching and mint baby-dragon following preview**, not the rejected old HYTOPIA voxel test world.
+**Live:** https://jumperkids3d.suaveforge.com — active Three.js art-first 3D dream-village build on server123, promoted using **`scripts/deploy-visual-3d-caddy-server123.sh`**. Source is PRIVATE `suaveforge/jumperkids/visual/`, built by `.github/workflows/build-visual-candidate.yml` on loopback `127.0.0.1:18845` and promoted by `.github/workflows/deploy-visual-3d-public.yml`. HTTPS, client JS/CSS and adult Jumper isolation verified in [successful deployment run 44265103784](https://github.com/suaveforge/jumperkids/actions/runs/44265103784). Rollback Caddy site snapshot is saved privately on server123.
 
-- First core story: pastel toy village central plaza → move or press **알 깨우기** → 3D egg hatches, star particles and short original chime → cute rounded dragon appears and follows the avatar. PC WASD/mouse click, mobile touch joystick and large action button. No account required.
-- Source: PRIVATE `suaveforge/jumperkids/studio/`. Built offline on server123 using real model assets and KTX2 decoder, staged in dedicated Docker `sf-jumperkids-artstudio` at loopback `127.0.0.1:18846`.
-- Real desktop/mobile Chromium test of egg hatch and companion following [run 44248041085](https://github.com/suaveforge/jumperkids/actions/runs/44248041085) PASS after correcting poor first assets, buried ground mesh and portrait camera clipping. Actual rendered screenshot artifacts attached to that run.
-- Current public-site Caddy promotion with backup and rollback via [successful GitHub Actions run 44249439740](https://github.com/suaveforge/jumperkids/actions/runs/44249439740). HTTPS root, JS, CSS, GLB and Basis WASM HTTP 200; original Jumper and independent 2.5D Kids preview unaffected. Exact public deployment script: `scripts/promote-artstudio-server123.sh`.
-- Separate `api-jumperkids3d.suaveforge.com` remains the **independent legacy HYTOPIA MMO sandbox API**, online and healthy, but **not yet connected to the new Three.js art-first preview**. Do not claim real multiplayer, secure parental accounts or persistent educational progress.
-- The old `scripts/configure-open-3d-caddy-server123.sh` was for the rejected voxel test and must NOT be re-run, because it would revert the new art-first frontend. The current intended site update path is ONLY `scripts/promote-artstudio-server123.sh` after private visual/functional QA.
-- This public site is a **zero-login technical play preview** without PII, advertising, payment or chat. It is not the complete child-safe educational MMO. Legal parental consent, verified auth, persistent observations, pet inventory and polished bakery/house/berry interactions remain to be built.
+**Real user-facing mechanics in this technical preview:** move a rounded chibi avatar by WASD/arrows or mobile touch joystick, reach and interact with a 3D flower egg, watch the rounded mint dragon hatch and physically follow, pick three separate 3D strawberry bushes, visit the bunny bakery and finish at the cottage. Actions are currently LOCAL to the browser, not authoritative multi-user play. No username, password, parent or child account, PII, payment or chat. Do not claim educational MMO, persistent state or child-safety completion.
 
-The sibling **https://jumperkids.suaveforge.com** still serves the earlier independent 2.5D walkthrough. Both hostnames use server123/Caddy/Spaceship, not GitHub Pages.
+**Back-end:** `api-jumperkids3d.suaveforge.com` is a separate legacy HYTOPIA 3D technical server and is *not yet connected* to the new Three.js play preview. The adult Jumper and earlier `jumperkids.suaveforge.com` 2.5D preview are independent and unchanged.
+
+**Current and ONLY approved Caddy release command:** `bash scripts/deploy-visual-3d-caddy-server123.sh`, run after the private build and browser QA. The older `scripts/promote-artstudio-server123.sh` and `scripts/configure-open-3d-caddy-server123.sh` are obsolete and MUST NOT be run; their corresponding deployment workflows have been removed to prevent rollback to rejected demo scenes. This PUBLIC repository must not receive private source code, credentials, child data, or secret tokens.
+
+**Verification and known limits:** earlier [desktop/mobile Chromium egg and pet QA run 44254705538](https://github.com/suaveforge/jumperkids/actions/runs/44254705538) passed. The complete 5-stage desktop/mobile game journey has separate QA `.github/workflows/qa-full-visual-quest.yml`; do not claim it passed until checking its actual run and logs. Guardian consent, durable sessions, parent observations, real MMO packet sync and proper educational content are incomplete. This is a zero-login technical preview, not a completed children-facing product.
+
