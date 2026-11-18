@@ -73,7 +73,7 @@ try:
     host='jumperkids3d.suaveforge.com'
     smoke=subprocess.run(['curl','-fsS','--max-time','14','--resolve',host+':443:127.0.0.1',
         'https://'+host+'/'],capture_output=True,timeout=20)
-    if smoke.returncode or b'index' not in smoke.stdout or b'game' not in smoke.stdout:
+    if smoke.returncode or b'<canvas id="game"' not in smoke.stdout or b'<title>' not in smoke.stdout:
         site.write_bytes(old)
         subprocess.run(cmd,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=35)
         raise RuntimeError('JK_VISUAL_HTTPS_SMOKE_FAILED_ROLLED_BACK')
