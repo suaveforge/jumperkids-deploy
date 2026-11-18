@@ -52,24 +52,33 @@ fcntl.flock(fd,fcntl.LOCK_EX)
 try:
     previous=main.read_bytes()
     prev_snippet=snippet.read_text()
-    if previous.count(line.encode())!=1:
-        raise RuntimeError('JK3D_IMPORT_MUST_EXIST_EXACTLY_ONCE')
+    import_count=previous.count(line.encode())
+    if import_count>1:
+        raise RuntimeError('JK3D_IMPORT_DUPLICATED_REFUSE_OVERWRITE')
+    next_main=previous if import_count==1 else previous.rstrip()+b'\n\n'+line.encode()+b'\n'
     if 'jumperkids3d.suaveforge.com {' not in prev_snippet:
         raise RuntimeError('JK3D_REFUSE_OVERWRITE_UNRELATED_SITE')
     snippet.write_text(site)
     candidate=main.parent/'.Caddyfile.jk3d-open-check'
-    candidate.write_bytes(previous)
+    candidate.write_bytes(next_main)
     shutil.copymode(main,candidate)
     check=subprocess.run([str(caddy),'adapt','--config',str(candidate),'--adapter','caddyfile'],
                          stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=40)
-    candidate.unlink(missing_ok=True)
     if check.returncode:
+        candidate.unlink(missing_ok=True)
         snippet.write_text(prev_snippet)
         raise RuntimeError('JK3D_OPEN_CADDY_VALIDATE_FAILED: '+check.stderr.decode(errors='replace')[-600:])
+    if next_main!=previous:os.replace(candidate,main)
+    else:candidate.unlink(missing_ok=True)
     command=[str(caddy),'reload','--config',str(main),'--adapter','caddyfile']
     reload=subprocess.run(command,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE,timeout=60)
     if reload.returncode:
         snippet.write_text(prev_snippet)
+        if next_main!=previous:
+            restore=main.parent/'.Caddyfile.jk3d-rollback'
+            restore.write_bytes(previous)
+            shutil.copymode(main,restore)
+            os.replace(restore,main)
         subprocess.run(command,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=40)
         raise RuntimeError('JK3D_OPEN_RELOAD_FAILED_ROLLED_BACK: '+reload.stderr.decode(errors='replace')[-600:])
     secret=root/'staff-preview-password.txt'
