@@ -32,7 +32,13 @@ site_text='''# JUMPER KIDS 3D visual TECHNICAL PREVIEW. No child login/data/paym
 # Dedicated Three.js frontend 18845. Native HYTOPIA API remains separate.
 jumperkids3d.suaveforge.com {
     encode gzip zstd
-    reverse_proxy 127.0.0.1:18845
+    @w01_hgal_art path /art/*
+    handle @w01_hgal_art {
+        respond "Not Found" 404
+    }
+    handle {
+        reverse_proxy 127.0.0.1:18845
+    }
     header {
         X-Content-Type-Options "nosniff"
         Referrer-Policy "no-referrer"
