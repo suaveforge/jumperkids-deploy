@@ -38,6 +38,10 @@ api-jumperkids3d.suaveforge.com {
     handle @preflight {
         respond "" 204
     }
+    @w01_hgal_native path /blocks/* /models/* /audio/* /textures/* /fonts/*
+    handle @w01_hgal_native {
+        respond "Not Found" 404
+    }
     handle {
         reverse_proxy https://127.0.0.1:18837 {
             transport http {
