@@ -1,29 +1,339 @@
 {
   "schema": "suaveforge.story.asset.catalog.v1",
-  "version": "1.1.3",
-  "policy_version": "1.1.0",
-  "policy_sha256": "c6623893773b792a4e9e00186b0363eb1c57f38a5739ab78a2fe0fe1fb6663ec",
-  "policy_git_blob": "65ec72ff838bcdf60055091e1f252b9651884f11",
+  "version": "1.2.0",
+  "policy_version": "1.2.0",
+  "policy_sha256": "7b053c6dbd24933bd59513178b73e5e63e5c88d57bc8425efe09f98ee1fb7e9c",
+  "policy_git_blob": "471520ef507e39debc5d6e29ac658ea018f743b7",
   "characters": [
     {
       "id": "story.jack",
-      "name": "잭"
+      "name": "잭",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "skin": "#f1c49f",
+      "hair": "#845035",
+      "shirt": "#e4ad54",
+      "pants": "#638c86",
+      "shoe": "#745645",
+      "accent": "#cf654c",
+      "hairStyle": "boy",
+      "body": 1,
+      "head": 1.04,
+      "belly": 0.9,
+      "hips": 0.9,
+      "arms": 0.93,
+      "legs": 0.94
     },
     {
       "id": "story.mother",
-      "name": "잭의 엄마"
+      "name": "잭의 엄마",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "skin": "#e9b48f",
+      "hair": "#704c3d",
+      "shirt": "#a5a6ce",
+      "pants": "#7b85a8",
+      "shoe": "#685047",
+      "accent": "#efe2bc",
+      "hairStyle": "bun",
+      "body": 1.08,
+      "head": 0.95,
+      "belly": 1.1,
+      "hips": 1.16,
+      "arms": 1,
+      "legs": 1
     },
     {
       "id": "story.bean-merchant",
-      "name": "마법의 콩 상인"
+      "name": "마법의 콩 상인",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "skin": "#c99569",
+      "hair": "#59504a",
+      "shirt": "#7a9b71",
+      "pants": "#a27b59",
+      "shoe": "#725342",
+      "accent": "#e0b764",
+      "hairStyle": "hat",
+      "body": 1.1,
+      "head": 0.95,
+      "belly": 1.14,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1
     },
     {
       "id": "story.giant",
-      "name": "거인"
+      "name": "거인",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "skin": "#d6a17c",
+      "hair": "#704731",
+      "shirt": "#a6b56b",
+      "pants": "#88706b",
+      "shoe": "#5c514e",
+      "accent": "#c57849",
+      "hairStyle": "beard",
+      "body": 1.48,
+      "head": 1.12,
+      "belly": 1.58,
+      "hips": 1.27,
+      "arms": 1.25,
+      "legs": 1.03
     },
     {
       "id": "story.giant-wife",
-      "name": "거인의 아내"
+      "name": "거인의 아내",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "skin": "#ebbc97",
+      "hair": "#98583c",
+      "shirt": "#bc8191",
+      "pants": "#8d7298",
+      "shoe": "#6d5158",
+      "accent": "#f2d89d",
+      "hairStyle": "braid",
+      "body": 1.32,
+      "head": 1.08,
+      "belly": 1.27,
+      "hips": 1.4,
+      "arms": 1.12,
+      "legs": 1.04
+    },
+    {
+      "id": "story.pig-straw",
+      "name": "첫째 돼지",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "pig",
+      "skin": "#f2b7ad",
+      "hair": "#d56f65",
+      "shirt": "#e6bb59",
+      "pants": "#77977a",
+      "shoe": "#d56f65",
+      "accent": "#e6bb59",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 1
+    },
+    {
+      "id": "story.pig-wood",
+      "name": "둘째 돼지",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "pig",
+      "skin": "#f4bbae",
+      "hair": "#ae625c",
+      "shirt": "#7ca6bd",
+      "pants": "#9c805e",
+      "shoe": "#ae625c",
+      "accent": "#7ca6bd",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 1
+    },
+    {
+      "id": "story.pig-brick",
+      "name": "셋째 돼지",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "pig",
+      "skin": "#f5c1b4",
+      "hair": "#c86b61",
+      "shirt": "#82a86c",
+      "pants": "#7992ad",
+      "shoe": "#c86b61",
+      "accent": "#82a86c",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 1
+    },
+    {
+      "id": "story.wolf",
+      "name": "늑대",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "wolf",
+      "skin": "#a5a7b4",
+      "hair": "#575b70",
+      "shirt": "#c2a075",
+      "pants": "#7c8599",
+      "shoe": "#575b70",
+      "accent": "#c2a075",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 1.12
+    },
+    {
+      "id": "story.hare",
+      "name": "토끼",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "hare",
+      "skin": "#e6c9a1",
+      "hair": "#a98264",
+      "shirt": "#7dabc1",
+      "pants": "#d8a55f",
+      "shoe": "#a98264",
+      "accent": "#7dabc1",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 1
+    },
+    {
+      "id": "story.tortoise",
+      "name": "거북이",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "tortoise",
+      "skin": "#94bd85",
+      "hair": "#557b5c",
+      "shirt": "#638f68",
+      "pants": "#b6a06d",
+      "shoe": "#557b5c",
+      "accent": "#638f68",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 0.92
+    },
+    {
+      "id": "story.donkey",
+      "name": "당나귀",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "donkey",
+      "skin": "#b7b4bf",
+      "hair": "#777582",
+      "shirt": "#a995bd",
+      "pants": "#6a697d",
+      "shoe": "#777582",
+      "accent": "#a995bd",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 1.12
+    },
+    {
+      "id": "story.dog",
+      "name": "개",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "dog",
+      "skin": "#d9ad79",
+      "hair": "#956849",
+      "shirt": "#789fbb",
+      "pants": "#ac705b",
+      "shoe": "#956849",
+      "accent": "#789fbb",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 0.94
+    },
+    {
+      "id": "story.cat",
+      "name": "고양이",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "cat",
+      "skin": "#e7ae75",
+      "hair": "#ad784f",
+      "shirt": "#c58d9c",
+      "pants": "#7e9db3",
+      "shoe": "#ad784f",
+      "accent": "#c58d9c",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 0.84
+    },
+    {
+      "id": "story.rooster",
+      "name": "수탉",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "species": "rooster",
+      "skin": "#f2d9a0",
+      "hair": "#bd6555",
+      "shirt": "#739b90",
+      "pants": "#dca555",
+      "shoe": "#bd6555",
+      "accent": "#739b90",
+      "body": 1,
+      "head": 1,
+      "belly": 1,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1,
+      "scale": 0.73
+    },
+    {
+      "id": "story.robber",
+      "name": "도둑",
+      "kind": "character",
+      "defaults": {},
+      "controls": [],
+      "skin": "#e3b18d",
+      "hair": "#535268",
+      "shirt": "#6f798d",
+      "pants": "#8c7363",
+      "shoe": "#725342",
+      "accent": "#bd8d61",
+      "hairStyle": "hat",
+      "body": 1.1,
+      "head": 0.95,
+      "belly": 1.14,
+      "hips": 1,
+      "arms": 1,
+      "legs": 1
     }
   ],
   "motions": [
@@ -63,7 +373,20 @@
     "treasure-pick",
     "chase-slip",
     "comic-reaction",
-    "harp-carry"
+    "harp-carry",
+    "guide",
+    "ready",
+    "inhale",
+    "blow",
+    "retreat",
+    "accelerate",
+    "decelerate",
+    "stretch",
+    "overtake",
+    "celebrate",
+    "sing",
+    "stack-ready",
+    "stack-land"
   ],
   "newMotions": [
     "climb",
@@ -80,7 +403,20 @@
     "treasure-pick",
     "chase-slip",
     "comic-reaction",
-    "harp-carry"
+    "harp-carry",
+    "guide",
+    "ready",
+    "inhale",
+    "blow",
+    "retreat",
+    "accelerate",
+    "decelerate",
+    "stretch",
+    "overtake",
+    "celebrate",
+    "sing",
+    "stack-ready",
+    "stack-land"
   ],
   "objects": [
     {
@@ -280,6 +616,202 @@
       "controls": [
         "open"
       ]
+    },
+    {
+      "id": "story.straw-bundle",
+      "name": "짚 묶음",
+      "kind": "object",
+      "defaults": {
+        "color": "#d9b965",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "material"
+    },
+    {
+      "id": "story.wood-plank",
+      "name": "나무 판자",
+      "kind": "object",
+      "defaults": {
+        "color": "#b98a5d",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "material"
+    },
+    {
+      "id": "story.brick",
+      "name": "벽돌",
+      "kind": "object",
+      "defaults": {
+        "color": "#c77b65",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "material"
+    },
+    {
+      "id": "story.straw-house",
+      "name": "짚 집",
+      "kind": "object",
+      "defaults": {
+        "color": "#d9b965",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [
+        "progress",
+        "damage",
+        "wind"
+      ],
+      "episodeKind": "house"
+    },
+    {
+      "id": "story.wood-house",
+      "name": "나무 집",
+      "kind": "object",
+      "defaults": {
+        "color": "#b98a5d",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [
+        "progress",
+        "damage",
+        "wind"
+      ],
+      "episodeKind": "house"
+    },
+    {
+      "id": "story.brick-house",
+      "name": "벽돌 집",
+      "kind": "object",
+      "defaults": {
+        "color": "#c77b65",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [
+        "progress",
+        "damage",
+        "wind"
+      ],
+      "episodeKind": "house"
+    },
+    {
+      "id": "story.start-line",
+      "name": "출발선",
+      "kind": "object",
+      "defaults": {
+        "color": "#f5e7c3",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "prop"
+    },
+    {
+      "id": "story.finish-line",
+      "name": "결승선",
+      "kind": "object",
+      "defaults": {
+        "color": "#d7795e",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "prop"
+    },
+    {
+      "id": "story.forest-tree",
+      "name": "숲 나무",
+      "kind": "object",
+      "defaults": {
+        "color": "#73976b",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "prop"
+    },
+    {
+      "id": "story.race-hill",
+      "name": "완만한 언덕",
+      "kind": "object",
+      "defaults": {
+        "color": "#9db37b",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "prop"
+    },
+    {
+      "id": "story.cottage-window",
+      "name": "오두막 창문",
+      "kind": "object",
+      "defaults": {
+        "color": "#ad805c",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ],
+      "episodeKind": "prop"
+    },
+    {
+      "id": "story.wood-table",
+      "name": "나무 식탁",
+      "kind": "object",
+      "defaults": {
+        "color": "#a47755",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "prop"
+    },
+    {
+      "id": "story.wood-chair",
+      "name": "나무 의자",
+      "kind": "object",
+      "defaults": {
+        "color": "#b38a62",
+        "progress": 1,
+        "damage": 0,
+        "wind": 0,
+        "open": 0
+      },
+      "controls": [],
+      "episodeKind": "prop"
     }
   ],
   "reactions": [
@@ -578,6 +1110,76 @@
       "life": 0.85,
       "size": 19,
       "category": "세계명작"
+    },
+    {
+      "id": "story.straw-fragments",
+      "name": "짚 파편",
+      "mode": "chips",
+      "colors": [
+        "#e6c46b",
+        "#c9a14e",
+        "#fff1b6"
+      ],
+      "count": 28,
+      "life": 1.1,
+      "size": 12,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.wood-fragments",
+      "name": "나무 파편",
+      "mode": "chips",
+      "colors": [
+        "#ba8d59",
+        "#e3c291",
+        "#936546"
+      ],
+      "count": 24,
+      "life": 1.1,
+      "size": 16,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.brick-fragments",
+      "name": "벽돌 파편",
+      "mode": "chips",
+      "colors": [
+        "#c67b66",
+        "#e8a58c",
+        "#9e5b4b"
+      ],
+      "count": 22,
+      "life": 1,
+      "size": 16,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.dust",
+      "name": "달리기 먼지",
+      "mode": "puff",
+      "colors": [
+        "#dfc595",
+        "#f2e2bd",
+        "#c6b28e"
+      ],
+      "count": 15,
+      "life": 0.55,
+      "size": 13,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.music-notes",
+      "name": "음표",
+      "mode": "note",
+      "colors": [
+        "#f3cb6e",
+        "#95b8d8",
+        "#d69ca8"
+      ],
+      "count": 14,
+      "life": 1.2,
+      "size": 19,
+      "category": "세계명작"
     }
   ],
   "backgrounds": [
@@ -639,6 +1241,28 @@
     {
       "id": "story.castle-interior",
       "name": "거인의 성 내부",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.race-trail",
+      "name": "경주 숲길·언덕",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.bremen-forest",
+      "name": "브레멘 숲길",
       "kind": "background",
       "defaults": {
         "time": "day",
@@ -907,6 +1531,90 @@
       "kind": "sound",
       "defaults": {},
       "controls": []
+    },
+    {
+      "id": "story.donkey",
+      "name": "당나귀 · 이아 이아",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.rooster",
+      "name": "수탉 · 꼬끼오",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.pig",
+      "name": "돼지 · 꿀꿀",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.wolf-inhale",
+      "name": "늑대 · 숨 들이마시기",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.wolf-blow",
+      "name": "늑대 · 후우우",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.straw-hit",
+      "name": "짚 · 사각",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.straw-break",
+      "name": "짚 · 바스락",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.wood-hit",
+      "name": "나무 · 톡",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.brick-hit",
+      "name": "벽돌 · 딱",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.brick-break",
+      "name": "벽돌 · 와르르",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.hare-step",
+      "name": "토끼 · 가벼운 발걸음",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.tortoise-step",
+      "name": "거북이 · 묵직한 발걸음",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
     }
   ],
   "bgm": [
@@ -956,6 +1664,78 @@
       "name": "04 콩나무 베기와 피버 엔딩",
       "duration": 14,
       "background": "story.village"
+    },
+    {
+      "id": "pigs-01",
+      "name": "아기 돼지 삼형제 1단계",
+      "duration": 15,
+      "background": "story.village"
+    },
+    {
+      "id": "pigs-02",
+      "name": "아기 돼지 삼형제 2단계",
+      "duration": 15,
+      "background": "story.village"
+    },
+    {
+      "id": "pigs-03",
+      "name": "아기 돼지 삼형제 3단계",
+      "duration": 20,
+      "background": "story.village"
+    },
+    {
+      "id": "pigs-04",
+      "name": "아기 돼지 삼형제 4단계",
+      "duration": 15,
+      "background": "story.village"
+    },
+    {
+      "id": "race-01",
+      "name": "토끼와 거북이 1단계",
+      "duration": 15,
+      "background": "story.race-trail"
+    },
+    {
+      "id": "race-02",
+      "name": "토끼와 거북이 2단계",
+      "duration": 15,
+      "background": "story.race-trail"
+    },
+    {
+      "id": "race-03",
+      "name": "토끼와 거북이 3단계",
+      "duration": 20,
+      "background": "story.race-trail"
+    },
+    {
+      "id": "race-04",
+      "name": "토끼와 거북이 4단계",
+      "duration": 15,
+      "background": "story.race-trail"
+    },
+    {
+      "id": "bremen-01",
+      "name": "브레멘 음악대 1단계",
+      "duration": 15,
+      "background": "story.bremen-forest"
+    },
+    {
+      "id": "bremen-02",
+      "name": "브레멘 음악대 2단계",
+      "duration": 15,
+      "background": "story.bremen-forest"
+    },
+    {
+      "id": "bremen-03",
+      "name": "브레멘 음악대 3단계",
+      "duration": 20,
+      "background": "story.bremen-forest"
+    },
+    {
+      "id": "bremen-04",
+      "name": "브레멘 음악대 4단계",
+      "duration": 15,
+      "background": "story.bremen-forest"
     }
   ],
   "extensions": {
@@ -1989,6 +2769,308 @@
       ],
       "texture": 0.5,
       "air": 0.47
+    },
+    {
+      "id": "story.donkey",
+      "name": "당나귀 · 이아 이아",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.48,
+          190,
+          1,
+          "bleat"
+        ],
+        [
+          0.51,
+          0.42,
+          116,
+          0.9,
+          "moo"
+        ],
+        [
+          1.02,
+          0.36,
+          210,
+          0.66,
+          "bleat"
+        ]
+      ],
+      "texture": 0.75,
+      "air": 0.65
+    },
+    {
+      "id": "story.rooster",
+      "name": "수탉 · 꼬끼오",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.15,
+          510,
+          0.75,
+          "cluck"
+        ],
+        [
+          0.18,
+          0.18,
+          720,
+          0.84,
+          "cluck"
+        ],
+        [
+          0.4,
+          0.55,
+          820,
+          1,
+          "bleat"
+        ]
+      ],
+      "texture": 0.6,
+      "air": 0.45
+    },
+    {
+      "id": "story.pig",
+      "name": "돼지 · 꿀꿀",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.2,
+          110,
+          0.9,
+          "burp"
+        ],
+        [
+          0.29,
+          0.22,
+          135,
+          1,
+          "burp"
+        ]
+      ],
+      "texture": 0.8,
+      "air": 0.45
+    },
+    {
+      "id": "story.wolf-inhale",
+      "name": "늑대 · 숨 들이마시기",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.74,
+          160,
+          1,
+          "breath"
+        ]
+      ],
+      "texture": 0.65,
+      "air": 0.9
+    },
+    {
+      "id": "story.wolf-blow",
+      "name": "늑대 · 후우우",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.82,
+          620,
+          1,
+          "wind"
+        ],
+        [
+          0.22,
+          0.54,
+          920,
+          0.5,
+          "wind"
+        ]
+      ],
+      "texture": 0.72,
+      "air": 0.8
+    },
+    {
+      "id": "story.straw-hit",
+      "name": "짚 · 사각",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.16,
+          1220,
+          1,
+          "leaf"
+        ]
+      ],
+      "texture": 0.8,
+      "air": 0.65
+    },
+    {
+      "id": "story.straw-break",
+      "name": "짚 · 바스락",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.27,
+          1350,
+          1,
+          "leaf"
+        ],
+        [
+          0.12,
+          0.33,
+          1600,
+          0.8,
+          "leaf"
+        ]
+      ],
+      "texture": 0.88,
+      "air": 0.7
+    },
+    {
+      "id": "story.wood-hit",
+      "name": "나무 · 톡",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.19,
+          180,
+          1,
+          "wood"
+        ]
+      ],
+      "texture": 0.6,
+      "air": 0.38
+    },
+    {
+      "id": "story.brick-hit",
+      "name": "벽돌 · 딱",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.19,
+          270,
+          1,
+          "axe"
+        ]
+      ],
+      "texture": 0.46,
+      "air": 0.28
+    },
+    {
+      "id": "story.brick-break",
+      "name": "벽돌 · 와르르",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.16,
+          125,
+          1,
+          "splinter"
+        ],
+        [
+          0.12,
+          0.22,
+          90,
+          0.8,
+          "splinter"
+        ],
+        [
+          0.28,
+          0.24,
+          75,
+          0.6,
+          "wood"
+        ]
+      ],
+      "texture": 0.85,
+      "air": 0.5
+    },
+    {
+      "id": "story.hare-step",
+      "name": "토끼 · 가벼운 발걸음",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.1,
+          190,
+          1,
+          "step"
+        ],
+        [
+          0.12,
+          0.1,
+          215,
+          0.65,
+          "step"
+        ]
+      ],
+      "texture": 0.34,
+      "air": 0.38
+    },
+    {
+      "id": "story.tortoise-step",
+      "name": "거북이 · 묵직한 발걸음",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.17,
+          82,
+          1,
+          "step"
+        ]
+      ],
+      "texture": 0.5,
+      "air": 0.35
+    }
+  ],
+  "policy_main_sha": "a4c228700c8c8519ec23bb6c3a92ebd71973ce88",
+  "next_episodes_sha256": "ab14ad490a2fb36de274061cd019e5fa8b74828c6fc111ece7f9020d5bf2f952",
+  "episodeSpecs": [
+    {
+      "id": "pigs",
+      "title": "아기 돼지 삼형제",
+      "stages": [
+        15,
+        15,
+        20,
+        15
+      ],
+      "materials": [
+        "straw",
+        "wood",
+        "brick",
+        "brick"
+      ]
+    },
+    {
+      "id": "race",
+      "title": "토끼와 거북이",
+      "stages": [
+        15,
+        15,
+        20,
+        15
+      ]
+    },
+    {
+      "id": "bremen",
+      "title": "브레멘 음악대",
+      "stages": [
+        15,
+        15,
+        20,
+        15
+      ]
     }
   ]
 }
