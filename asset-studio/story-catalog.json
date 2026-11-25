@@ -1,6 +1,6 @@
 {
   "schema": "suaveforge.story.asset.catalog.v1",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "policy_version": "1.2.0",
   "policy_sha256": "7b053c6dbd24933bd59513178b73e5e63e5c88d57bc8425efe09f98ee1fb7e9c",
   "policy_git_blob": "471520ef507e39debc5d6e29ac658ea018f743b7",
@@ -3072,5 +3072,19 @@
         15
       ]
     }
-  ]
+  ],
+  "qualityApis": [
+    "guideCue",
+    "successCue",
+    "wolfWind",
+    "materialResponse",
+    "raceFeedback",
+    "stackGuide",
+    "bremenMixPCM"
+  ],
+  "selectionReferences": {
+    "mainSha": "b57e36aef2df02d161346e457845ff02da38d665",
+    "manifest": "docs/story-arcade/SELECTION_THUMBNAILS.md",
+    "status": "selection screenshot crops only; rights unverified; no embedded reference image"
+  }
 }
