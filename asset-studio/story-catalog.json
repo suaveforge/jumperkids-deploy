@@ -1,0 +1,664 @@
+{
+  "schema": "suaveforge.story.asset.catalog.v1",
+  "version": "1.0.0",
+  "policy_version": "1.0.0",
+  "policy_sha256": "b4ec76049bd28286e4be7a01e29501885fd9c0c39fbaea0817a1c645b8776f6b",
+  "policy_git_blob": "827a44c51269b0ac80169ca535106cbcd2abbba6",
+  "characters": [
+    {
+      "id": "story.jack",
+      "name": "잭"
+    },
+    {
+      "id": "story.mother",
+      "name": "잭의 엄마"
+    },
+    {
+      "id": "story.bean-merchant",
+      "name": "마법의 콩 상인"
+    },
+    {
+      "id": "story.giant",
+      "name": "거인"
+    },
+    {
+      "id": "story.giant-wife",
+      "name": "거인의 아내"
+    }
+  ],
+  "motions": [
+    "idle",
+    "blink",
+    "walk",
+    "run",
+    "jump",
+    "sit",
+    "lie",
+    "laugh",
+    "cry",
+    "angry",
+    "surprise",
+    "shy",
+    "sleep",
+    "happy",
+    "eat",
+    "drink",
+    "pick",
+    "carry",
+    "wave",
+    "clap",
+    "dance",
+    "brush",
+    "climb",
+    "sneak",
+    "hang",
+    "slide",
+    "axe",
+    "lift",
+    "spin",
+    "hit",
+    "snore"
+  ],
+  "newMotions": [
+    "climb",
+    "sneak",
+    "hang",
+    "slide",
+    "axe",
+    "lift",
+    "spin",
+    "hit",
+    "snore"
+  ],
+  "objects": [
+    {
+      "id": "story.cow",
+      "name": "소",
+      "kind": "animal",
+      "defaults": {
+        "color": "#f2e3c6",
+        "animate": true
+      },
+      "controls": [
+        "animate"
+      ]
+    },
+    {
+      "id": "story.hen",
+      "name": "암탉",
+      "kind": "animal",
+      "defaults": {
+        "color": "#f7ead6",
+        "wing": 0,
+        "lay": 0,
+        "animate": true
+      },
+      "controls": [
+        "wing",
+        "lay",
+        "animate"
+      ]
+    },
+    {
+      "id": "story.bird",
+      "name": "새",
+      "kind": "animal",
+      "defaults": {
+        "color": "#79a9ba",
+        "wing": 0,
+        "animate": true
+      },
+      "controls": [
+        "wing",
+        "animate"
+      ]
+    },
+    {
+      "id": "story.magic-bean",
+      "name": "마법의 콩",
+      "kind": "object",
+      "defaults": {
+        "color": "#82b65f",
+        "glow": 1
+      },
+      "controls": [
+        "glow"
+      ]
+    },
+    {
+      "id": "story.bean-bag",
+      "name": "콩주머니",
+      "kind": "object",
+      "defaults": {
+        "color": "#b88c5d",
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ]
+    },
+    {
+      "id": "story.beanstalk",
+      "name": "콩나무",
+      "kind": "object",
+      "defaults": {
+        "color": "#6f9d54",
+        "growth": 0.8,
+        "thickness": 1,
+        "leaves": 7,
+        "bend": 0.12,
+        "cut": 0,
+        "fall": 0
+      },
+      "controls": [
+        "growth",
+        "thickness",
+        "leaves",
+        "bend",
+        "cut",
+        "fall"
+      ]
+    },
+    {
+      "id": "story.axe",
+      "name": "도끼",
+      "kind": "object",
+      "defaults": {
+        "color": "#bb9872",
+        "swing": 0
+      },
+      "controls": [
+        "swing"
+      ]
+    },
+    {
+      "id": "story.golden-egg",
+      "name": "황금알",
+      "kind": "object",
+      "defaults": {
+        "color": "#e9bc51",
+        "glow": 1
+      },
+      "controls": [
+        "glow"
+      ]
+    },
+    {
+      "id": "story.harp",
+      "name": "황금 하프",
+      "kind": "object",
+      "defaults": {
+        "color": "#e6b75d",
+        "play": 0,
+        "animate": true
+      },
+      "controls": [
+        "play",
+        "animate"
+      ]
+    },
+    {
+      "id": "story.coin-bag",
+      "name": "금화 주머니",
+      "kind": "object",
+      "defaults": {
+        "color": "#c7a279",
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ]
+    },
+    {
+      "id": "story.cottage",
+      "name": "시골집",
+      "kind": "object",
+      "defaults": {
+        "color": "#bd7857",
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ]
+    },
+    {
+      "id": "story.cloud",
+      "name": "구름",
+      "kind": "object",
+      "defaults": {
+        "color": "#f3f1dc",
+        "glow": 0.3
+      },
+      "controls": [
+        "glow"
+      ]
+    },
+    {
+      "id": "story.castle",
+      "name": "거인의 성",
+      "kind": "object",
+      "defaults": {
+        "color": "#9297b3",
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ]
+    },
+    {
+      "id": "story.giant-furniture",
+      "name": "대형 가구",
+      "kind": "object",
+      "defaults": {
+        "color": "#ad7955",
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ]
+    },
+    {
+      "id": "story.treasure-chest",
+      "name": "보물상자",
+      "kind": "object",
+      "defaults": {
+        "color": "#b98150",
+        "open": 0
+      },
+      "controls": [
+        "open"
+      ]
+    }
+  ],
+  "reactions": [
+    {
+      "id": "squash",
+      "name": "스쿼시·스트레치",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "belly",
+      "name": "배 팽창",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "hips",
+      "name": "엉덩이 팽창",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "recoil",
+      "name": "반동",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "hitstop",
+      "name": "히트스톱",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "tint",
+      "name": "얼굴색 변환",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "expression",
+      "name": "과장 표정",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "airspin",
+      "name": "공중 회전",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    }
+  ],
+  "effects": [
+    {
+      "id": "story.growth",
+      "name": "마법의 성장",
+      "mode": "leaf",
+      "colors": [
+        "#9acb65",
+        "#f5e3a0",
+        "#b0d995"
+      ],
+      "count": 30,
+      "life": 1.5,
+      "size": 22,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.rainbow",
+      "name": "무지개",
+      "mode": "rainbow",
+      "colors": [
+        "#e98d8d",
+        "#f0c36f",
+        "#9fca83",
+        "#83bddb",
+        "#ba9ed3"
+      ],
+      "count": 16,
+      "life": 1.6,
+      "size": 27,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.fart-cloud",
+      "name": "방귀 구름",
+      "mode": "puff",
+      "colors": [
+        "#a6b97b",
+        "#e4dcac",
+        "#c0c994"
+      ],
+      "count": 20,
+      "life": 0.9,
+      "size": 25,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.fart-thrust",
+      "name": "방귀 추진 불꽃",
+      "mode": "thrust",
+      "colors": [
+        "#efad59",
+        "#f5db8b",
+        "#e78860"
+      ],
+      "count": 24,
+      "life": 0.65,
+      "size": 19,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.snore",
+      "name": "코골이",
+      "mode": "snore",
+      "colors": [
+        "#a6a4cf",
+        "#e3d6ef",
+        "#8a94ba"
+      ],
+      "count": 10,
+      "life": 1.5,
+      "size": 26,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.sweat",
+      "name": "동화 땀방울",
+      "mode": "sweat",
+      "colors": [
+        "#79c7db",
+        "#d4eef1"
+      ],
+      "count": 12,
+      "life": 0.8,
+      "size": 17,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.sneeze",
+      "name": "재채기",
+      "mode": "sneeze",
+      "colors": [
+        "#b6dfe3",
+        "#f5edcc"
+      ],
+      "count": 25,
+      "life": 0.65,
+      "size": 17,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.wood-chips",
+      "name": "나무 파편",
+      "mode": "chips",
+      "colors": [
+        "#c8a06e",
+        "#e1bf8d",
+        "#8f6d4e"
+      ],
+      "count": 26,
+      "life": 0.95,
+      "size": 13,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.coin-burst",
+      "name": "금화 폭발",
+      "mode": "coin",
+      "colors": [
+        "#edc35a",
+        "#fff0a2",
+        "#c88c3c"
+      ],
+      "count": 25,
+      "life": 1.2,
+      "size": 17,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.egg-firework",
+      "name": "황금알 폭죽",
+      "mode": "egg",
+      "colors": [
+        "#f4d171",
+        "#f9ead3",
+        "#e8a16e"
+      ],
+      "count": 27,
+      "life": 1.25,
+      "size": 19,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.star-orbit",
+      "name": "별 회전",
+      "mode": "orbit",
+      "colors": [
+        "#f5d371",
+        "#f8efcc",
+        "#c8addd"
+      ],
+      "count": 12,
+      "life": 1.4,
+      "size": 23,
+      "category": "세계명작"
+    }
+  ],
+  "backgrounds": [
+    {
+      "id": "story.village",
+      "name": "시골 마을",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.cottage-interior",
+      "name": "시골집 내부",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.forest",
+      "name": "숲",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.sky",
+      "name": "하늘과 구름",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.castle-exterior",
+      "name": "거인의 성 외부",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    },
+    {
+      "id": "story.castle-interior",
+      "name": "거인의 성 내부",
+      "kind": "background",
+      "defaults": {
+        "time": "day",
+        "weather": "clear",
+        "light": 1
+      },
+      "controls": []
+    }
+  ],
+  "sounds": [
+    {
+      "id": "story.fart",
+      "name": "방귀",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.burp",
+      "name": "트림",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.laugh",
+      "name": "웃음",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.snore",
+      "name": "코골이",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.step",
+      "name": "발걸음",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.axe",
+      "name": "도끼질",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.wood-break",
+      "name": "나무 파괴",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.bounce",
+      "name": "튕김",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.magic",
+      "name": "마법",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.hen",
+      "name": "닭 울음",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.harp",
+      "name": "하프",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.firework",
+      "name": "폭죽",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    }
+  ],
+  "bgm": [
+    {
+      "id": "story.cheerful",
+      "name": "경쾌함",
+      "bpm": 116
+    },
+    {
+      "id": "story.tense",
+      "name": "긴장",
+      "bpm": 98
+    },
+    {
+      "id": "story.chase",
+      "name": "추격",
+      "bpm": 144
+    },
+    {
+      "id": "story.celebrate",
+      "name": "환호",
+      "bpm": 128
+    }
+  ],
+  "runtime": "/asset-studio/story-kit.js"
+}
