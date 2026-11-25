@@ -1,6 +1,6 @@
 {
   "schema": "suaveforge.story.asset.catalog.v1",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "policy_version": "1.1.0",
   "policy_sha256": "c6623893773b792a4e9e00186b0363eb1c57f38a5739ab78a2fe0fe1fb6663ec",
   "policy_git_blob": "65ec72ff838bcdf60055091e1f252b9651884f11",
@@ -707,112 +707,203 @@
     },
     {
       "id": "story.burp",
-      "name": "트림",
+      "name": "트림 · 목구멍에서 꺼억",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.burp-pop",
+      "name": "트림 · 꼬마의 끅!",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.burp-long",
+      "name": "트림 · 꺼어어억",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.burp-double",
+      "name": "트림 · 끅, 꺼억!",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.burp-surprise",
+      "name": "트림 · 끝인 줄 알았지?",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.burp-giant",
+      "name": "트림 · 거인의 대왕 꺼억",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.laugh",
-      "name": "웃음",
+      "name": "웃음 · 까르르",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.laugh-giggle",
+      "name": "웃음 · 키득키득",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.laugh-belly",
+      "name": "웃음 · 하하하!",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.snore",
-      "name": "코골이",
+      "name": "코골이 · 드르렁 푸우",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
-      "id": "story.step",
-      "name": "발걸음",
-      "kind": "sound",
-      "defaults": {},
-      "controls": []
-    },
-    {
-      "id": "story.axe",
-      "name": "도끼질",
-      "kind": "sound",
-      "defaults": {},
-      "controls": []
-    },
-    {
-      "id": "story.wood-break",
-      "name": "나무 파괴",
-      "kind": "sound",
-      "defaults": {},
-      "controls": []
-    },
-    {
-      "id": "story.bounce",
-      "name": "튕김",
-      "kind": "sound",
-      "defaults": {},
-      "controls": []
-    },
-    {
-      "id": "story.magic",
-      "name": "마법",
+      "id": "story.snore-startle",
+      "name": "코골이 · 드르렁 컥!",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.hen",
-      "name": "닭 울음",
+      "name": "닭 · 꼬꼬댁",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.sheep",
+      "name": "양 · 메에에",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.cow",
+      "name": "소 · 음메에",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.bird",
+      "name": "새 · 짹짹",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.dog",
+      "name": "강아지 · 멍멍",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.cat",
+      "name": "고양이 · 야옹",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.step",
+      "name": "발걸음 · 툭 사각",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.axe",
+      "name": "도끼질 · 퍽 쩍",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.wood-break",
+      "name": "나무 파괴 · 우지직",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.bounce",
+      "name": "튕김 · 통통",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.magic",
+      "name": "마법 · 반짝이는 음표",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.harp",
-      "name": "하프",
+      "name": "하프 · 현의 울림",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.firework",
-      "name": "폭죽",
+      "name": "폭죽 · 팡 파라락",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.leaf-shot",
-      "name": "잎사귀 날리기",
+      "name": "잎사귀 날리기 · 슈욱 사락",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.wind",
-      "name": "바람",
+      "name": "바람 · 숲의 바람결",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.speed",
-      "name": "속도감",
+      "name": "속도감 · 휘익",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.rise",
-      "name": "급상승",
+      "name": "급상승 · 슈우웅",
       "kind": "sound",
       "defaults": {},
       "controls": []
     },
     {
       "id": "story.fall",
-      "name": "급하강",
+      "name": "급하강 · 휘이익",
       "kind": "sound",
       "defaults": {},
       "controls": []
@@ -1124,6 +1215,780 @@
       "wet": 0.66,
       "flutter": 0.68,
       "air": 0.78
+    }
+  ],
+  "soundProfiles": [
+    {
+      "id": "story.burp",
+      "name": "트림 · 목구멍에서 꺼억",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.49,
+          102,
+          1,
+          "burp"
+        ],
+        [
+          0.52,
+          0.13,
+          76,
+          0.26,
+          "breath"
+        ]
+      ],
+      "texture": 0.75,
+      "air": 0.55
+    },
+    {
+      "id": "story.burp-pop",
+      "name": "트림 · 꼬마의 끅!",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.19,
+          181,
+          1,
+          "burp"
+        ]
+      ],
+      "texture": 0.32,
+      "air": 0.35
+    },
+    {
+      "id": "story.burp-long",
+      "name": "트림 · 꺼어어억",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          1.12,
+          100,
+          1,
+          "burp"
+        ],
+        [
+          1.15,
+          0.14,
+          63,
+          0.25,
+          "breath"
+        ]
+      ],
+      "texture": 0.77,
+      "air": 0.72
+    },
+    {
+      "id": "story.burp-double",
+      "name": "트림 · 끅, 꺼억!",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.16,
+          152,
+          0.65,
+          "burp"
+        ],
+        [
+          0.38,
+          0.42,
+          102,
+          1,
+          "burp"
+        ]
+      ],
+      "texture": 0.54,
+      "air": 0.56
+    },
+    {
+      "id": "story.burp-surprise",
+      "name": "트림 · 끝인 줄 알았지?",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.37,
+          113,
+          1,
+          "burp"
+        ],
+        [
+          0.91,
+          0.15,
+          190,
+          0.65,
+          "burp"
+        ],
+        [
+          1.11,
+          0.23,
+          86,
+          0.8,
+          "burp"
+        ]
+      ],
+      "texture": 0.61,
+      "air": 0.64
+    },
+    {
+      "id": "story.burp-giant",
+      "name": "트림 · 거인의 대왕 꺼억",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          1.15,
+          63,
+          1,
+          "burp"
+        ],
+        [
+          1.21,
+          0.38,
+          49,
+          0.56,
+          "burp"
+        ]
+      ],
+      "texture": 0.83,
+      "air": 0.85
+    },
+    {
+      "id": "story.laugh",
+      "name": "웃음 · 까르르",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.14,
+          300,
+          0.8,
+          "ha"
+        ],
+        [
+          0.18,
+          0.14,
+          340,
+          1,
+          "ha"
+        ],
+        [
+          0.36,
+          0.16,
+          390,
+          1,
+          "ha"
+        ],
+        [
+          0.57,
+          0.19,
+          325,
+          0.8,
+          "ha"
+        ],
+        [
+          0.84,
+          0.11,
+          250,
+          0.35,
+          "breath"
+        ]
+      ],
+      "texture": 0.35,
+      "air": 0.2
+    },
+    {
+      "id": "story.laugh-giggle",
+      "name": "웃음 · 키득키득",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.09,
+          370,
+          0.65,
+          "hee"
+        ],
+        [
+          0.13,
+          0.1,
+          405,
+          0.8,
+          "hee"
+        ],
+        [
+          0.27,
+          0.12,
+          390,
+          1,
+          "hee"
+        ],
+        [
+          0.44,
+          0.1,
+          320,
+          0.6,
+          "hee"
+        ],
+        [
+          0.61,
+          0.16,
+          330,
+          0.9,
+          "hee"
+        ]
+      ],
+      "texture": 0.44,
+      "air": 0.25
+    },
+    {
+      "id": "story.laugh-belly",
+      "name": "웃음 · 하하하!",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.23,
+          145,
+          1,
+          "ha"
+        ],
+        [
+          0.29,
+          0.22,
+          158,
+          0.95,
+          "ha"
+        ],
+        [
+          0.57,
+          0.23,
+          142,
+          0.82,
+          "ha"
+        ],
+        [
+          0.86,
+          0.31,
+          119,
+          0.68,
+          "ha"
+        ]
+      ],
+      "texture": 0.54,
+      "air": 0.5
+    },
+    {
+      "id": "story.snore",
+      "name": "코골이 · 드르렁 푸우",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.84,
+          65,
+          1,
+          "snore"
+        ],
+        [
+          0.96,
+          0.45,
+          70,
+          0.58,
+          "breath"
+        ]
+      ],
+      "texture": 0.84,
+      "air": 0.7
+    },
+    {
+      "id": "story.snore-startle",
+      "name": "코골이 · 드르렁 컥!",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.61,
+          77,
+          1,
+          "snore"
+        ],
+        [
+          0.7,
+          0.17,
+          105,
+          0.83,
+          "snore"
+        ],
+        [
+          1.02,
+          0.25,
+          155,
+          0.5,
+          "breath"
+        ]
+      ],
+      "texture": 0.9,
+      "air": 0.77
+    },
+    {
+      "id": "story.hen",
+      "name": "닭 · 꼬꼬댁",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.09,
+          475,
+          0.78,
+          "cluck"
+        ],
+        [
+          0.13,
+          0.1,
+          510,
+          0.85,
+          "cluck"
+        ],
+        [
+          0.27,
+          0.23,
+          720,
+          1,
+          "cluck"
+        ]
+      ],
+      "texture": 0.48,
+      "air": 0.38
+    },
+    {
+      "id": "story.sheep",
+      "name": "양 · 메에에",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.69,
+          255,
+          1,
+          "bleat"
+        ],
+        [
+          0.79,
+          0.22,
+          220,
+          0.48,
+          "bleat"
+        ]
+      ],
+      "texture": 0.63,
+      "air": 0.62
+    },
+    {
+      "id": "story.cow",
+      "name": "소 · 음메에",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.92,
+          92,
+          1,
+          "moo"
+        ]
+      ],
+      "texture": 0.49,
+      "air": 0.57
+    },
+    {
+      "id": "story.bird",
+      "name": "새 · 짹짹",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.12,
+          1780,
+          0.85,
+          "chirp"
+        ],
+        [
+          0.2,
+          0.1,
+          2080,
+          0.75,
+          "chirp"
+        ],
+        [
+          0.38,
+          0.16,
+          1520,
+          1,
+          "chirp"
+        ]
+      ],
+      "texture": 0.34,
+      "air": 0.2
+    },
+    {
+      "id": "story.dog",
+      "name": "강아지 · 멍멍",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.16,
+          135,
+          1,
+          "bark"
+        ],
+        [
+          0.3,
+          0.18,
+          158,
+          0.86,
+          "bark"
+        ]
+      ],
+      "texture": 0.74,
+      "air": 0.46
+    },
+    {
+      "id": "story.cat",
+      "name": "고양이 · 야옹",
+      "family": "voice",
+      "events": [
+        [
+          0,
+          0.58,
+          390,
+          1,
+          "meow"
+        ]
+      ],
+      "texture": 0.45,
+      "air": 0.28
+    },
+    {
+      "id": "story.step",
+      "name": "발걸음 · 툭 사각",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.15,
+          94,
+          1,
+          "step"
+        ]
+      ],
+      "texture": 0.58,
+      "air": 0.58
+    },
+    {
+      "id": "story.axe",
+      "name": "도끼질 · 퍽 쩍",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.16,
+          115,
+          1,
+          "axe"
+        ],
+        [
+          0.065,
+          0.13,
+          235,
+          0.38,
+          "splinter"
+        ]
+      ],
+      "texture": 0.68,
+      "air": 0.75
+    },
+    {
+      "id": "story.wood-break",
+      "name": "나무 파괴 · 우지직",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.14,
+          96,
+          0.65,
+          "splinter"
+        ],
+        [
+          0.09,
+          0.2,
+          85,
+          0.8,
+          "splinter"
+        ],
+        [
+          0.24,
+          0.19,
+          65,
+          1,
+          "splinter"
+        ],
+        [
+          0.43,
+          0.28,
+          48,
+          0.55,
+          "wood"
+        ]
+      ],
+      "texture": 0.83,
+      "air": 0.85
+    },
+    {
+      "id": "story.bounce",
+      "name": "튕김 · 통통",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.22,
+          165,
+          1,
+          "rubber"
+        ],
+        [
+          0.24,
+          0.15,
+          230,
+          0.48,
+          "rubber"
+        ],
+        [
+          0.42,
+          0.1,
+          300,
+          0.25,
+          "rubber"
+        ]
+      ],
+      "texture": 0.3,
+      "air": 0.22
+    },
+    {
+      "id": "story.magic",
+      "name": "마법 · 반짝이는 음표",
+      "family": "music",
+      "events": [
+        [
+          0,
+          0.54,
+          523,
+          0.76,
+          "bell"
+        ],
+        [
+          0.075,
+          0.48,
+          659,
+          0.78,
+          "bell"
+        ],
+        [
+          0.15,
+          0.48,
+          784,
+          0.83,
+          "bell"
+        ],
+        [
+          0.24,
+          0.58,
+          1047,
+          1,
+          "bell"
+        ]
+      ],
+      "texture": 0.33,
+      "air": 0.18
+    },
+    {
+      "id": "story.harp",
+      "name": "하프 · 현의 울림",
+      "family": "music",
+      "events": [
+        [
+          0,
+          0.72,
+          261.63,
+          0.9,
+          "string"
+        ],
+        [
+          0.085,
+          0.7,
+          329.63,
+          0.8,
+          "string"
+        ],
+        [
+          0.17,
+          0.65,
+          392,
+          0.9,
+          "string"
+        ],
+        [
+          0.255,
+          0.61,
+          523.25,
+          1,
+          "string"
+        ],
+        [
+          0.34,
+          0.72,
+          659.25,
+          0.65,
+          "string"
+        ]
+      ],
+      "texture": 0.36,
+      "air": 0.24
+    },
+    {
+      "id": "story.firework",
+      "name": "폭죽 · 팡 파라락",
+      "family": "impact",
+      "events": [
+        [
+          0,
+          0.24,
+          68,
+          1,
+          "boom"
+        ],
+        [
+          0.13,
+          0.12,
+          170,
+          0.3,
+          "spark"
+        ],
+        [
+          0.18,
+          0.14,
+          215,
+          0.44,
+          "spark"
+        ],
+        [
+          0.26,
+          0.2,
+          190,
+          0.38,
+          "spark"
+        ],
+        [
+          0.39,
+          0.24,
+          220,
+          0.24,
+          "spark"
+        ]
+      ],
+      "texture": 0.77,
+      "air": 0.85
+    },
+    {
+      "id": "story.leaf-shot",
+      "name": "잎사귀 날리기 · 슈욱 사락",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.23,
+          1260,
+          1,
+          "leaf"
+        ]
+      ],
+      "texture": 0.63,
+      "air": 0.58
+    },
+    {
+      "id": "story.wind",
+      "name": "바람 · 숲의 바람결",
+      "family": "air",
+      "events": [
+        [
+          0,
+          1.16,
+          440,
+          1,
+          "wind"
+        ],
+        [
+          0.35,
+          0.7,
+          880,
+          0.42,
+          "wind"
+        ]
+      ],
+      "texture": 0.65,
+      "air": 0.45
+    },
+    {
+      "id": "story.speed",
+      "name": "속도감 · 휘익",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.31,
+          1050,
+          1,
+          "speed"
+        ]
+      ],
+      "texture": 0.6,
+      "air": 0.56
+    },
+    {
+      "id": "story.rise",
+      "name": "급상승 · 슈우웅",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.48,
+          420,
+          1,
+          "rise"
+        ]
+      ],
+      "texture": 0.47,
+      "air": 0.35
+    },
+    {
+      "id": "story.fall",
+      "name": "급하강 · 휘이익",
+      "family": "air",
+      "events": [
+        [
+          0,
+          0.54,
+          1300,
+          1,
+          "fall"
+        ]
+      ],
+      "texture": 0.5,
+      "air": 0.47
     }
   ]
 }
