@@ -1,9 +1,9 @@
 {
   "schema": "suaveforge.story.asset.catalog.v1",
-  "version": "1.0.0",
-  "policy_version": "1.0.0",
-  "policy_sha256": "b4ec76049bd28286e4be7a01e29501885fd9c0c39fbaea0817a1c645b8776f6b",
-  "policy_git_blob": "827a44c51269b0ac80169ca535106cbcd2abbba6",
+  "version": "1.1.0",
+  "policy_version": "1.1.0",
+  "policy_sha256": "c6623893773b792a4e9e00186b0363eb1c57f38a5739ab78a2fe0fe1fb6663ec",
+  "policy_git_blob": "65ec72ff838bcdf60055091e1f252b9651884f11",
   "characters": [
     {
       "id": "story.jack",
@@ -57,7 +57,13 @@
     "lift",
     "spin",
     "hit",
-    "snore"
+    "snore",
+    "exchange",
+    "throw",
+    "treasure-pick",
+    "chase-slip",
+    "comic-reaction",
+    "harp-carry"
   ],
   "newMotions": [
     "climb",
@@ -68,7 +74,13 @@
     "lift",
     "spin",
     "hit",
-    "snore"
+    "snore",
+    "exchange",
+    "throw",
+    "treasure-pick",
+    "chase-slip",
+    "comic-reaction",
+    "harp-carry"
   ],
   "objects": [
     {
@@ -326,6 +338,20 @@
       "kind": "reaction",
       "defaults": {},
       "controls": []
+    },
+    {
+      "id": "comic-stumble",
+      "name": "코믹하게 휘청이기",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "comic-shock",
+      "name": "과장된 깜짝 반응",
+      "kind": "reaction",
+      "defaults": {},
+      "controls": []
     }
   ],
   "effects": [
@@ -482,6 +508,76 @@
       "life": 1.4,
       "size": 23,
       "category": "세계명작"
+    },
+    {
+      "id": "story.leaf-projectile",
+      "name": "잎사귀 투사체",
+      "mode": "leaf-shot",
+      "colors": [
+        "#70a74e",
+        "#c7de88",
+        "#9bc66b"
+      ],
+      "count": 16,
+      "life": 0.85,
+      "size": 18,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.wind",
+      "name": "바람",
+      "mode": "wind",
+      "colors": [
+        "#e3f3ef",
+        "#a5d6d3",
+        "#f7f5da"
+      ],
+      "count": 20,
+      "life": 1.2,
+      "size": 20,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.speed-lines",
+      "name": "속도선",
+      "mode": "speed-line",
+      "colors": [
+        "#fff8dc",
+        "#c2e3e7",
+        "#9dc3cc"
+      ],
+      "count": 22,
+      "life": 0.75,
+      "size": 19,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.rise",
+      "name": "급상승",
+      "mode": "rise",
+      "colors": [
+        "#fff5d6",
+        "#d1edab",
+        "#a8d6d8"
+      ],
+      "count": 22,
+      "life": 0.85,
+      "size": 19,
+      "category": "세계명작"
+    },
+    {
+      "id": "story.fall",
+      "name": "급하강",
+      "mode": "fall",
+      "colors": [
+        "#fff6de",
+        "#a6d2dd",
+        "#dbe8cb"
+      ],
+      "count": 22,
+      "life": 0.85,
+      "size": 19,
+      "category": "세계명작"
     }
   ],
   "backgrounds": [
@@ -636,6 +732,41 @@
       "kind": "sound",
       "defaults": {},
       "controls": []
+    },
+    {
+      "id": "story.leaf-shot",
+      "name": "잎사귀 날리기",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.wind",
+      "name": "바람",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.speed",
+      "name": "속도감",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.rise",
+      "name": "급상승",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
+    },
+    {
+      "id": "story.fall",
+      "name": "급하강",
+      "kind": "sound",
+      "defaults": {},
+      "controls": []
     }
   ],
   "bgm": [
@@ -660,5 +791,48 @@
       "bpm": 128
     }
   ],
-  "runtime": "/asset-studio/story-kit.js"
+  "runtime": "/asset-studio/story-kit.js",
+  "sceneProfiles": [
+    {
+      "id": "jack-01",
+      "name": "01 마법의 콩과 하늘 여행",
+      "duration": 18,
+      "background": "story.village"
+    },
+    {
+      "id": "jack-02",
+      "name": "02 거인의 성",
+      "duration": 18,
+      "background": "story.castle-interior"
+    },
+    {
+      "id": "jack-03",
+      "name": "03 거인과의 추격전",
+      "duration": 15,
+      "background": "story.sky"
+    },
+    {
+      "id": "jack-04",
+      "name": "04 콩나무 베기와 피버 엔딩",
+      "duration": 14,
+      "background": "story.village"
+    }
+  ],
+  "extensions": {
+    "vine": [
+      "vinePoint",
+      "vineSegment",
+      "vineWindow",
+      "climbPlacement"
+    ],
+    "bindings": [
+      "characterAttachments",
+      "characterProjectiles",
+      "motionEvents"
+    ],
+    "compositions": [
+      "sceneFrame",
+      "sceneSVG"
+    ]
+  }
 }
