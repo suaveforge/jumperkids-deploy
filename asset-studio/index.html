@@ -264,7 +264,20 @@ return {o,p,rx};
 }
 
 const motionEvents=Object.freeze({exchange:{duration:1.8,transfer:.52},throw:{duration:1.4,release:.48}, "treasure-pick":{duration:1.8,grasp:.40},"chase-slip":{duration:1.5}, "comic-reaction":{duration:1.25},"harp-carry":{duration:1.6},axe:{duration:1.1,impact:.60}});
-function directionJoint(o,sg,leg=false){if(o.view==="side")return [(leg?2.5*o.hips:2.8*o.body)*sg+(leg?-2:-4)*o.body,leg?15:-42];return [sg*(leg?17*o.hips:29*o.body),leg?15:-42];}
+function directionJoint(o,sg,leg=false){const shoulder=o.species?-42:-35;if(o.view==="side")return [(leg?2.5*o.hips:2.8*o.body)*sg+(leg?-2:-4)*o.body,leg?15:shoulder];return [sg*(leg?17*o.hips:(o.species?29:27)*o.body),leg?15:shoulder];}
+function humanHeadY(o){return -52-38*o.head;}
+function smoothHumanLimb(o,sg,a,f,leg=false){
+const len=leg?o.legs:o.arms,[x,y]=directionJoint(o,sg,leg),side=o.view==="side",back=o.view==="back";
+const j=rotPt(0,28,a),v=rotPt(0,28,a+f),end=[j[0]+v[0],j[1]+v[1]],point=q=>q.map(n=>+n.toFixed(3)).join(" ");
+const d="M0 0L"+point(j)+"L"+point(end),outer=leg?20:18,inner=outer-2.5;
+const stroke=(d,c,w)=>line(d,c,w),paint=leg?o.pants:o.skin;
+let art=stroke(d,ink,outer)+stroke(d,paint,inner);
+if(!leg){const cuff=rotPt(0,20,a);art+=stroke("M0 0L"+point(cuff),o.shirt,inner);const n=rotPt(1,0,a),c=[cuff[0]+n[0]*(inner/2-.8),cuff[1]+n[1]*(inner/2-.8)],b=[cuff[0]-n[0]*(inner/2-.8),cuff[1]-n[1]*(inner/2-.8)];art+=line("M"+point(c)+"L"+point(b),ink,.85);}
+if(leg){const shoe=back?path("M-10 -4Q0 -8 10 -4L11 10Q0 14 -11 10Z",o.shoe,ink,1.3)+line("M-9 9Q0 11 9 9","#e2be97",1.2):side?path("M-8 -5Q2 -7 8 -1L18 3Q23 11 12 12H-9Q-12 7 -8 -5Z",o.shoe,ink,1.3)+line("M-8 9H17","#e2be97",1.2):path("M-9 -6Q0 -8 9 -6L13 5Q16 13 0 14Q-16 13 -13 5Z",o.shoe,ink,1.3)+line("M-10 10Q0 13 10 10","#e2be97",1.2);
+art+=`<g data-jk-shoe="${side?"profile":back?"heel":"front"}" transform="translate(${point(end)}) rotate(${a+f})">${shoe}</g>`;}
+else{art+=group("translate("+point(end)+") rotate("+(a+f)+")",path("M-7 -5Q0 -9 7 -5Q11 0 7 8Q0 12 -7 8Q-11 0 -7 -5Z",o.skin,ink,1.25)+line("M-3 4L-2 7M2 4L3 7","#a8755e",.75));}
+return `<g data-jk-smooth-limb="${leg?"leg":"arm"}${sg<0?"L":"R"}" transform="translate(${x} ${y}) scale(${len})">${art}</g>`;}
+
 function handLocal(o,p,side){const left=side==="handL",a=left?p.al:p.ar,f=left?p.fl:p.fr,j=rotPt(0,28*o.arms,a),k=rotPt(0,28*o.arms,a+f),origin=directionJoint(o,left?-1:1);return {point:[origin[0]+j[0]+k[0],origin[1]+j[1]+k[1]],angle:a+f};}
 function directionalTorso(o,animal=false){const side=o.view==="side",back=o.view==="back",shirt=o.shirt,pants=o.pants,accent=o.accent,apron=["bun","braid"].includes(o.hairStyle),bib=o.hairStyle==="boy"||animal;let art;
 if(side){art=path(`M-14 -49Q-25 -43 -24 -18L-19 13Q-5 23 17 14Q${34*o.belly} -3 23 -28Q17 -46 8 -49Z`,shirt)+path("M-17 -43Q-22 -23 -17 8L-10 12L-8 -42Z","#ffffff25","none")+path("M-19 10Q-3 17 17 10L19 23Q-3 30 -21 21Z",pants)+line("M-2 15L-3 23","#51483e",1.1);
@@ -290,16 +303,14 @@ function characterAnchors(id,opts={}){
 if(C.find(c=>c.id===id)?.species)return animalRig(id,opts).anchors;
 const {o,p,rx}=characterState(id,opts);let side=o.view==="side"?.62:1,arm=29*o.body*(o.view==="side"?.72:1);
 const hand=(sg,a,f)=>{const x=sg*arm,y=-43;const j=rotPt(0,29*o.arms,a),k=rotPt(0,28*o.arms,a+f);return [x+j[0]+k[0],y+j[1]+k[1]];};
-const pts={head:[0,-65-30*o.head],mouth:[o.view==="side"?22*o.head:0,-65+19*o.head],belly:[0,-13],hips:[0,18],back:[o.view==="side"?-21:0,-15],feet:[0,80*o.legs],handL:handLocal(o,p,"handL").point,handR:handLocal(o,p,"handR").point,center:[0,0]};
+const hy=humanHeadY(o),headPoint=(x,y)=>{const v=rotPt(x*o.head,y*o.head,p.head);return [v[0],v[1]+hy];};
+const pts={head:headPoint(0,-30),mouth:headPoint(o.view==="side"?22:0,19),belly:[0,-13],hips:[0,18],back:[o.view==="side"?-21:0,-15],feet:[0,80*o.legs],handL:handLocal(o,p,"handL").point,handR:handLocal(o,p,"handR").point,center:[0,0]};
 for(const k of Object.keys(pts)){let [x,y]=pts[k];[x,y]=rotPt(x*o.direction*p.sx*rx.sx,y*p.sy*rx.sy,p.rot+rx.rotation);pts[k]=[x+p.x+rx.x,y+p.y+rx.y];}return pts;
 }
 function drawCharacter(id,opts={}){
 if(C.find(c=>c.id===id)?.species)return animalRig(id,opts).svg;
 const {o,p,rx}=characterState(id,opts),side=o.view==="side",back=o.view==="back",bw=o.body*(side?.72:1),skin=o.skin,hair=o.hair,shirt=o.shirt,pants=o.pants,shoe=o.shoe,accent=o.accent;
-const limb=(sg,a,f,leg=false)=>{const len=leg?o.legs:o.arms,[x,y]=directionJoint(o,sg,leg),fill=leg?pants:shirt,end=leg?shoe:skin;
-const upper=path("M-9 -2Q0 -8 9 -2L10 22Q10 31 0 32Q-10 31 -10 22Z",fill)+path("M-7 2Q-3 -2 0 2L-1 24Q-4 28 -7 22Z","#ffffff20","none");
-const lower=path("M-9 0Q0 -5 9 0L8 22Q7 27 0 28Q-7 27 -8 22Z",leg?pants:skin)+path("M-6 3L-5 20Q-3 23 -2 20L0 3Z","#ffffff23","none")+(leg?(back?path("M-10 21Q0 17 10 21L11 33Q0 39 -11 33Z",end)+line("M-9 32Q0 35 9 32","#e2be97",1.7):side?path("M-8 20L7 22Q10 28 20 29Q23 36 12 37H-9Q-13 32 -8 20Z",end)+line("M-8 34H17","#e2be97",1.7):path("M-9 21Q0 18 8 22L17 28Q19 35 9 36H-9Q-13 31 -9 21Z",end)+line("M-8 33H12","#e2be97",1.7)):path("M-7 20Q-11 22 -8 28L-5 33Q0 37 6 33Q10 28 7 22Q3 18 -7 20Z",end)+line("M-3 28L-2 33M2 28L3 32","#a8755e",.8));
-return group(`translate(${x} ${y}) rotate(${a}) scale(${len})`,upper+group(`translate(0 28) rotate(${f})`,lower));};
+const limb=(sg,a,f,leg=false)=>smoothHumanLimb(o,sg,a,f,leg);
 let torso=path(`M-22 -49Q-35 -47 -34 -28Q${-37*o.belly} -7 ${-24*o.hips} 14Q0 23 ${24*o.hips} 14Q${37*o.belly} -7 34 -28Q35 -47 22 -49Z`,shirt)+path(`M-25 -44Q-31 -25 ${-25*o.belly} 4Q-15 13 -6 10L-11 -42Z`,"#ffffff25","none")+path(`M-24 9Q0 16 24 9L${24*o.hips} 20Q0 28 ${-24*o.hips} 20Z`,pants);
 if(o.hairStyle==="boy")torso+=path("M-15 -46L-9 -32L9 -32L15 -46L19 12H-19Z","#bd784e")+rect(-13,-27,26,20,4,"#d28d54")+line("M-8 -24H8","#efbb79",1.4)+ellipse(-11,-32,2.7,2.7,"#f3d08e",ink)+ellipse(11,-32,2.7,2.7,"#f3d08e",ink);
 else if(["bun","braid"].includes(o.hairStyle))torso+=path("M-10 -44L-17 -12L-24 19Q0 29 24 19L17 -12L10 -44Z",accent)+path("M-13 0Q0 -5 13 0L11 12Q0 16 -11 12Z","#fff1cf")+line("M-16 -17H16M-19 18Q0 24 19 18","#b28a62",1.5);
@@ -325,11 +336,13 @@ if(p.face==="sad")face+=path("M-16 -1Q-22 11 -16 13Q-10 11 -16 -1Z","#8ccfe0","n
 if(["bun","braid"].includes(o.hairStyle)){face=ellipse(0,-62,19,16,hair,ink)+face;if(o.hairStyle==="braid")face+=group("translate(31 10)",path("M-7 0Q13 7 6 19Q15 28 4 38Q10 46 0 55Q-11 46 -5 36Q-15 29 -6 18Q-15 7 -7 0Z",hair)+line("M-4 8L5 15M-5 25L4 33","#d69b6f",2)+rect(-5,45,10,6,2,accent));}
 if(rx.tint&&!back)face+=path(headshape,rx.tint.color,"none",0).replace("<path ",`<path opacity="${rx.tint.opacity}" `);
 if(back&&["boy","hat"].includes(o.hairStyle))face+=o.hairStyle==="boy"?path("M-40 -42Q-31 -73 8 -72Q38 -68 40 -43Q0 -48 -40 -42Z",accent)+line("M-28 -43Q0 -38 28 -43","#e5a05e",3):path("M-32 -53L-24 -78Q0 -88 23 -77L33 -53Z","#927153")+path("M-47 -55Q0 -65 47 -55Q51 -45 38 -43H-38Q-51 -45 -47 -55Z","#b18b60");
-const head=group(`translate(0 -65) rotate(${p.head}) scale(${o.head})`,face);
+const hy=humanHeadY(o),neck=path(`M${-9*o.body} ${hy+20*o.head}Q0 ${hy+23*o.head} ${9*o.body} ${hy+20*o.head}L${11*o.body} -43Q0 -38 ${-11*o.body} -43Z`,skin,ink,1.3),head=group(`translate(0 ${hy}) rotate(${p.head}) scale(${o.head})`,face);
 const near=side?1:.96;
-let body=limb(-1,p.ll,p.sl,true)+limb(1,p.lr,p.sr,true)+limb(-1,p.al,p.fl)+group(`scale(${bw} 1)`,torso)+head+group(`opacity(${near})`,limb(1,p.ar,p.fr));
-if(side)body=group("opacity(.72)",limb(-1,p.ll,p.sl,true)+limb(-1,p.al,p.fl))+group(`scale(${bw} 1)`,torso)+limb(1,p.lr,p.sr,true)+head+limb(1,p.ar,p.fr);
-if(back)body=limb(-1,p.ll,p.sl,true)+limb(1,p.lr,p.sr,true)+limb(-1,p.al,p.fl)+limb(1,p.ar,p.fr)+group(`scale(${bw} 1)`,torso)+head;
+const quiet=["idle","blink","walk","run","sneak","sit","sleep","lie","snore"].includes(opts.motion||"idle");
+const leftArm=limb(-1,p.al,p.fl),rightArm=limb(1,p.ar,p.fr),leftLeg=limb(-1,p.ll,p.sl,true),rightLeg=limb(1,p.lr,p.sr,true),clothes=group(`scale(${bw} 1)`,torso);
+let body=leftLeg+rightLeg+leftArm+neck+clothes+(quiet?rightArm+head:head+rightArm);
+if(side)body=group("opacity(.72)",leftLeg+leftArm)+rightLeg+neck+clothes+(quiet?rightArm+head:head+rightArm);
+if(back)body=leftLeg+rightLeg+leftArm+rightArm+neck+clothes+head;
 const attachments=localAttachments(o,p,opts);
 for(const a of attachments){body+=group("matrix("+a.localMatrix.join(" ")+")",drawAsset(a.id,a.state));const h=handLocal(o,p,a.hand);body+=group("translate("+h.point.join(" ")+") rotate("+h.angle+")",path("M-6 -7Q-9 -5 -8 1Q-6 9 1 8Q9 7 8 0Q7 -7 2 -6L-1 -3Q-4 -8 -6 -7Z",skin)+line("M-3 0Q1 3 4 0","#a8755e",.9));}
 if(p.prop&&!attachments.length&&opts.tool!=="none"&&!Array.isArray(opts.attachments)&&(!opts.tool||opts.tool==="auto")&&!toolDefaults[p.prop]){const h=handLocal(o,p,"handR").point,prop=p.prop==="cup"?path("M-10 -12H10L7 12H-7Z","#8cc6ca"):path("M-4 -20H4V19H-4Z","#80b6a4");body+=group("translate("+h.join(" ")+") scale(.42)",prop);}
@@ -836,7 +849,7 @@ $('[data-story="svg"]').onclick=()=>{if(mode!=="sounds")download(markup(),select
 if(mode==="sounds")$('[data-story="svg"]').hidden=true;
 function frame(now){if(disposed)return;const dt=Math.min(.1,Math.max(0,(now-last)/1000));last=now;if(!host.hidden&&host.isConnected&&host.getClientRects().length){if(mode==="sounds"&&engine){const level=engine.level();peakSeen=Math.max(peakSeen,level.peak);const m=host.querySelector("[data-sound-meter]");if(m)m.value=level.peak;if(activeSound&&!bgmId&&!level.nodes){activeSound=false;soundStatus("재생 완료 · 실제 최대 출력 "+Math.round(peakSeen*100)+"%");}}if(playing){elapsed+=dt;if(now-(frame.last||0)>32){paint();frame.last=now;}}}else if(activeSound){stopAudio();}doc.defaultView.requestAnimationFrame(frame);}
 reset(selected);if(mode==="backgrounds")mountScenePreview(host);doc.defaultView.requestAnimationFrame(frame);host.storyController={getConfig:()=>config(mode,selected.id,{...opts}),select(id){const d=entries.find(x=>x.id===id);if(d)reset(d);},set(key,value){opts[key]=value;build();paint();},stop(){playing=false;stopAudio();},dispose(){disposed=true;host.episodePreview?.dispose();engine?.dispose();context?.close();},diagnostic:()=>({rendered,selected:selected.id,mode,elapsed,activeSound,peakSeen,audio:engine?.level()??null})};return host.storyController;}
-const kit={version:"1.2.1",directionRevision:"full-body-v1",guideCue,successCue,wolfWind,materialResponse,raceFeedback,stackGuide,bremenMixPCM,episodeSpecs:EPISODE_SPECS,animalRig,houseSlots,createHouseState,assembleHouse,advanceHouse,houseFrame,createRaceState,advanceRace,stackAnimals,bremenMix,createEpisodeState,episodeInput,advanceEpisode,episodeSceneFrame,fartProfiles:FART_PROFILES,makeFartPCM,soundProfiles:SOUND_PROFILES,makeSoundPCM,characters:C,objects:O,reactions,backgrounds:bg,sounds:SFX,bgm:BGM,effects:FX.catalog,motions:[...oldMotions,...newMotions],newMotions,motionNames,pose,sampleReaction,drawCharacter,characterAnchors,drawAsset,assetAnchors,backgroundLayers,backgroundSVG,drawEffect:FX.draw,createEffectRuntime,audioEngine,renderSound,config,svgFor,mount,characterAttachments,characterProjectiles,motionEvents,vinePoint,vineSegment,vineWindow,climbPlacement,sceneProfiles,sceneFrame,sceneSVG:(id,time,opts)=>sceneFrame(id,time,opts).svg};
+const kit={version:"1.2.1",directionRevision:"full-body-v1",bodyRevision:"continuous-limbs-v1",guideCue,successCue,wolfWind,materialResponse,raceFeedback,stackGuide,bremenMixPCM,episodeSpecs:EPISODE_SPECS,animalRig,houseSlots,createHouseState,assembleHouse,advanceHouse,houseFrame,createRaceState,advanceRace,stackAnimals,bremenMix,createEpisodeState,episodeInput,advanceEpisode,episodeSceneFrame,fartProfiles:FART_PROFILES,makeFartPCM,soundProfiles:SOUND_PROFILES,makeSoundPCM,characters:C,objects:O,reactions,backgrounds:bg,sounds:SFX,bgm:BGM,effects:FX.catalog,motions:[...oldMotions,...newMotions],newMotions,motionNames,pose,sampleReaction,drawCharacter,characterAnchors,drawAsset,assetAnchors,backgroundLayers,backgroundSVG,drawEffect:FX.draw,createEffectRuntime,audioEngine,renderSound,config,svgFor,mount,characterAttachments,characterProjectiles,motionEvents,vinePoint,vineSegment,vineWindow,climbPlacement,sceneProfiles,sceneFrame,sceneSVG:(id,time,opts)=>sceneFrame(id,time,opts).svg};
 globalThis.JKStoryKit=kit;if(typeof module!=="undefined"&&module.exports)module.exports=kit;
 })();
 
