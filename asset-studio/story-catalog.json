@@ -3134,6 +3134,16 @@
         "volume": 0.48,
         "pitch": 1.05,
         "duration": 0.8
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "repeat": {
@@ -3181,6 +3191,16 @@
         "volume": 0.48,
         "pitch": 1.08,
         "duration": 0.55
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "drag": {
@@ -3228,6 +3248,16 @@
         "volume": 0.45,
         "pitch": 0.88,
         "duration": 0.85
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "hold": {
@@ -3275,6 +3305,16 @@
         "volume": 0.46,
         "pitch": 0.95,
         "duration": 0.95
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "swipe": {
@@ -3322,6 +3362,16 @@
         "volume": 0.46,
         "pitch": 1.13,
         "duration": 0.8
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "join": {
@@ -3369,6 +3419,16 @@
         "volume": 0.46,
         "pitch": 1.04,
         "duration": 1
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "window": {
@@ -3416,6 +3476,16 @@
         "volume": 0.44,
         "pitch": 1,
         "duration": 1
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "stack": {
@@ -3463,6 +3533,16 @@
         "volume": 0.45,
         "pitch": 0.9,
         "duration": 1.1
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     },
     "concert": {
@@ -3510,9 +3590,113 @@
         "volume": 0.46,
         "pitch": 1.02,
         "duration": 1.25
+      },
+      "context": {
+        "profile": "auto",
+        "variation": true,
+        "materialSound": true,
+        "materialEffect": true,
+        "neighbor": "auto",
+        "neighborStrength": 0.75,
+        "contactSample": "",
+        "resultSample": ""
       }
     }
   },
   "directionRevisionV21": "benchmark-guides-v2.1",
-  "directionRevisionV22": "distinct-responses-v2.2"
+  "directionRevisionV22": "distinct-responses-v2.2",
+  "directionRevisionV23": "context-feedback-v2.3",
+  "directionContexts": {
+    "auto": {
+      "label": "기본 프리셋",
+      "material": "auto",
+      "neighbor": "none",
+      "sound": null,
+      "effect": null
+    },
+    "soft": {
+      "label": "인형 · 말랑한 물체",
+      "material": "soft",
+      "neighbor": "sway",
+      "sound": "story.bounce",
+      "effect": "story.dust"
+    },
+    "wood": {
+      "label": "나무 · 블록 · 가구",
+      "material": "wood",
+      "neighbor": "sway",
+      "sound": "story.wood-hit",
+      "effect": "story.wood-chips"
+    },
+    "straw": {
+      "label": "풀 · 짚 · 종이",
+      "material": "straw",
+      "neighbor": "sway",
+      "sound": "story.straw-hit",
+      "effect": "story.straw-fragments"
+    },
+    "brick": {
+      "label": "돌 · 벽돌",
+      "material": "brick",
+      "neighbor": "sway",
+      "sound": "story.brick-hit",
+      "effect": "story.dust"
+    },
+    "grow": {
+      "label": "씨앗 · 식물 성장",
+      "material": "organic",
+      "neighbor": "sway",
+      "sound": "story.rise",
+      "effect": "story.growth"
+    },
+    "cut": {
+      "label": "베기 · 절단",
+      "material": "wood",
+      "neighbor": "sway",
+      "sound": "story.axe",
+      "effect": "story.wood-chips"
+    },
+    "blow": {
+      "label": "바람 · 밀기",
+      "material": "air",
+      "neighbor": "sway",
+      "sound": "story.wolf-blow",
+      "effect": "story.wind"
+    },
+    "feed": {
+      "label": "먹이기 · 돌보기",
+      "material": "organic",
+      "neighbor": "smile",
+      "sound": "story.laugh-giggle",
+      "effect": "story.star-orbit"
+    },
+    "animal": {
+      "label": "동물 · 감정 반응",
+      "material": "organic",
+      "neighbor": "smile",
+      "sound": "story.bird",
+      "effect": "story.music-notes"
+    },
+    "music": {
+      "label": "악기 · 음악",
+      "material": "music",
+      "neighbor": "sing",
+      "sound": "story.harp",
+      "effect": "story.music-notes"
+    },
+    "move": {
+      "label": "이동 · 달리기",
+      "material": "ground",
+      "neighbor": "sway",
+      "sound": "story.step",
+      "effect": "story.speed-lines"
+    },
+    "discover": {
+      "label": "열기 · 발견",
+      "material": "wood",
+      "neighbor": "smile",
+      "sound": "story.magic",
+      "effect": "story.rise"
+    }
+  }
 }
