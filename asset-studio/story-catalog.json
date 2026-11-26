@@ -3115,21 +3115,25 @@
       },
       "contact": {
         "motion": "ready",
+        "expression": "surprise",
+        "reaction": "squash",
         "effect": "story.star-orbit",
         "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "intensity": 0.78,
+        "volume": 0.34,
+        "pitch": 1.1,
+        "duration": 0.28
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "motion": "jump",
+        "expression": "happy",
+        "reaction": "squash",
+        "effect": "story.rise",
+        "sound": "story.magic",
+        "intensity": 0.9,
+        "volume": 0.48,
+        "pitch": 1.05,
+        "duration": 0.8
       }
     },
     "repeat": {
@@ -3157,22 +3161,26 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
+        "motion": "stretch",
+        "expression": "happy",
+        "reaction": "squash",
+        "effect": "story.dust",
+        "sound": "story.tortoise-step",
+        "intensity": 0.8,
         "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "pitch": 1.18,
+        "duration": 0.23
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "motion": "accelerate",
+        "expression": "o",
+        "reaction": "recoil",
+        "effect": "story.speed-lines",
+        "sound": "story.speed",
+        "intensity": 0.95,
+        "volume": 0.48,
+        "pitch": 1.08,
+        "duration": 0.55
       }
     },
     "drag": {
@@ -3200,21 +3208,25 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "motion": "pick",
+        "expression": "happy",
+        "reaction": "squash",
+        "effect": "story.rise",
+        "sound": "story.rise",
+        "intensity": 0.7,
+        "volume": 0.3,
+        "pitch": 1.05,
+        "duration": 0.4
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
+        "motion": "stack-land",
+        "expression": "happy",
+        "reaction": "squash",
+        "effect": "story.dust",
+        "sound": "story.bounce",
+        "intensity": 0.9,
+        "volume": 0.45,
+        "pitch": 0.88,
         "duration": 0.85
       }
     },
@@ -3243,22 +3255,26 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "motion": "inhale",
+        "expression": "o",
+        "reaction": "belly",
+        "effect": "story.growth",
+        "sound": "story.wind",
+        "intensity": 0.7,
+        "volume": 0.23,
+        "pitch": 0.84,
+        "duration": 0.65
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "motion": "stretch",
+        "expression": "surprise",
+        "reaction": "recoil",
+        "effect": "story.rainbow",
+        "sound": "story.magic",
+        "intensity": 0.95,
+        "volume": 0.46,
+        "pitch": 0.95,
+        "duration": 0.95
       }
     },
     "swipe": {
@@ -3287,21 +3303,25 @@
       },
       "contact": {
         "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
+        "expression": "o",
+        "reaction": "recoil",
+        "effect": "story.wind",
+        "sound": "story.hare-step",
+        "intensity": 0.78,
+        "volume": 0.29,
+        "pitch": 1.2,
         "duration": 0.3
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "motion": "slide",
+        "expression": "happy",
+        "reaction": "recoil",
+        "effect": "story.speed-lines",
+        "sound": "story.wind",
+        "intensity": 0.95,
+        "volume": 0.46,
+        "pitch": 1.13,
+        "duration": 0.8
       }
     },
     "join": {
@@ -3329,22 +3349,26 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "motion": "wave",
+        "expression": "happy",
+        "reaction": "expression",
+        "effect": "story.music-notes",
+        "sound": "story.bird",
+        "intensity": 0.76,
+        "volume": 0.31,
+        "pitch": 1.04,
+        "duration": 0.42
       },
       "result": {
-        "motion": "celebrate",
+        "motion": "dance",
+        "expression": "happy",
+        "reaction": "squash",
         "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "sound": "story.laugh-giggle",
+        "intensity": 0.95,
+        "volume": 0.46,
+        "pitch": 1.04,
+        "duration": 1
       }
     },
     "window": {
@@ -3372,22 +3396,26 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
+        "motion": "sneak",
+        "expression": "surprise",
+        "reaction": "expression",
         "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
+        "sound": "story.harp",
+        "intensity": 0.7,
         "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "pitch": 1.12,
+        "duration": 0.4
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
+        "motion": "surprise",
+        "expression": "surprise",
+        "reaction": "comic-shock",
+        "effect": "story.rise",
+        "sound": "story.rise",
+        "intensity": 0.8,
+        "volume": 0.44,
         "pitch": 1,
-        "duration": 0.85
+        "duration": 1
       }
     },
     "stack": {
@@ -3415,22 +3443,26 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "motion": "stack-ready",
+        "expression": "o",
+        "reaction": "squash",
+        "effect": "story.rise",
+        "sound": "story.step",
+        "intensity": 0.78,
+        "volume": 0.3,
+        "pitch": 0.95,
+        "duration": 0.42
       },
       "result": {
-        "motion": "celebrate",
+        "motion": "stack-land",
+        "expression": "happy",
+        "reaction": "squash",
         "effect": "story.star-orbit",
         "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "intensity": 0.95,
+        "volume": 0.45,
+        "pitch": 0.9,
+        "duration": 1.1
       }
     },
     "concert": {
@@ -3458,24 +3490,29 @@
         "maxSteps": 3
       },
       "contact": {
-        "motion": "ready",
-        "effect": "story.star-orbit",
-        "sound": "story.bounce",
-        "intensity": 0.65,
-        "volume": 0.32,
-        "pitch": 1,
-        "duration": 0.3
+        "motion": "sing",
+        "expression": "happy",
+        "reaction": "expression",
+        "effect": "story.music-notes",
+        "sound": "story.harp",
+        "intensity": 0.8,
+        "volume": 0.33,
+        "pitch": 1.06,
+        "duration": 0.4
       },
       "result": {
-        "motion": "celebrate",
-        "effect": "story.star-orbit",
-        "sound": "story.wood-hit",
-        "intensity": 0.85,
-        "volume": 0.5,
-        "pitch": 1,
-        "duration": 0.85
+        "motion": "sing",
+        "expression": "happy",
+        "reaction": "squash",
+        "effect": "story.music-notes",
+        "sound": "story.bird",
+        "intensity": 0.95,
+        "volume": 0.46,
+        "pitch": 1.02,
+        "duration": 1.25
       }
     }
   },
-  "directionRevisionV21": "benchmark-guides-v2.1"
+  "directionRevisionV21": "benchmark-guides-v2.1",
+  "directionRevisionV22": "distinct-responses-v2.2"
 }
