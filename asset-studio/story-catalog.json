@@ -3137,6 +3137,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3194,6 +3195,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3251,6 +3253,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3308,6 +3311,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3365,6 +3369,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3422,6 +3427,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3479,6 +3485,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3536,6 +3543,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3593,6 +3601,7 @@
       },
       "context": {
         "profile": "auto",
+        "worldAction": "auto",
         "variation": true,
         "materialSound": true,
         "materialEffect": true,
@@ -3613,6 +3622,13 @@
       "neighbor": "none",
       "sound": null,
       "effect": null
+    },
+    "assemble": {
+      "label": "조립 · 완성품",
+      "material": "wood",
+      "neighbor": "smile",
+      "sound": "story.wood-hit",
+      "effect": "story.wood-chips"
     },
     "soft": {
       "label": "인형 · 말랑한 물체",
@@ -3698,5 +3714,19 @@
       "sound": "story.magic",
       "effect": "story.rise"
     }
-  }
+  },
+  "directionRevisionV24": "causal-world-v2.4",
+  "directionWorldActions": [
+    "auto",
+    "none",
+    "assemble",
+    "grow",
+    "cut",
+    "blow",
+    "feed",
+    "join",
+    "concert",
+    "discover",
+    "move"
+  ]
 }
