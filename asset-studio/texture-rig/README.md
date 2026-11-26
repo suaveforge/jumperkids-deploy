@@ -1,0 +1,1 @@
+Original texture rig prototype. Join part-00.txt through part-07.txt in order to produce the standalone HTML. The original embedded six textures and weighted triangle meshes are retained. This is not a Spine runtime; four sample motions only. No production character is replaced.
