@@ -17,6 +17,11 @@ const C=[
 {...title("story.bean-merchant","마법의 콩 상인","character"),skin:"#c99569",hair:"#59504a",shirt:"#7a9b71",pants:"#a27b59",shoe:"#725342",accent:"#e0b764",hairStyle:"hat",body:1.1,head:.95,belly:1.14,hips:1,arms:1,legs:1},
 {...title("story.giant","거인","character"),skin:"#d6a17c",hair:"#704731",shirt:"#a6b56b",pants:"#88706b",shoe:"#5c514e",accent:"#c57849",hairStyle:"beard",body:1.48,head:1.12,belly:1.58,hips:1.27,arms:1.25,legs:1.03},
 {...title("story.giant-wife","거인의 아내","character"),skin:"#ebbc97",hair:"#98583c",shirt:"#bc8191",pants:"#8d7298",shoe:"#6d5158",accent:"#f2d89d",hairStyle:"braid",body:1.32,head:1.08,belly:1.27,hips:1.4,arms:1.12,legs:1.04}];
+// Additive design candidates. Never replace a production ID or change its pose engine.
+const DESIGN_CANDIDATES=[
+{...C[0],id:"design.basic-star",name:"신규 기본형 · 별이",prototypeStyle:"star",skin:"#f5c29d",hair:"#8e4c34",shirt:"#fff0d0",pants:"#7294bb",shoe:"#efb74d",accent:"#f1b94d",head:1.38,body:1.03,belly:1.08,hips:1.04,arms:.86,legs:.78},
+{...C[0],id:"design.story-jack",name:"신규 동화형 · 잭",prototypeStyle:"adventure",skin:"#f3c69f",hair:"#925030",shirt:"#f7e3b9",pants:"#86915a",shoe:"#805236",accent:"#a95b3d",head:1.23,body:1.04,belly:1,hips:1.02,arms:.93,legs:.92}
+];
 const oldMotions=["idle","blink","walk","run","jump","sit","lie","laugh","cry","angry","surprise","shy","sleep","happy","eat","drink","pick","carry","wave","clap","dance","brush"];
 const newMotions=["climb","sneak","hang","slide","axe","lift","spin","hit","snore","exchange","throw","treasure-pick","chase-slip","comic-reaction","harp-carry"];
 const motionNames={idle:"대기",blink:"눈 깜빡임",walk:"걷기",run:"달리기",jump:"점프",sit:"앉기",lie:"눕기",laugh:"웃음",cry:"울기",angry:"화남",surprise:"놀람",shy:"부끄러움",sleep:"수면",happy:"환호",eat:"먹기",drink:"마시기",pick:"줍기",carry:"운반",wave:"손 흔들기",clap:"박수",dance:"춤",brush:"양치",climb:"기어오르기",sneak:"몰래 걷기",hang:"매달리기",slide:"미끄러지기",axe:"도끼질",lift:"물건 들기",spin:"공중 회전",hit:"피격",snore:"코골이",exchange:"물건 교환",throw:"물건 던지기","treasure-pick":"보물 집기","chase-slip":"추격 중 미끄러짐","comic-reaction":"과장된 리액션","harp-carry":"하프 들기"};
@@ -73,8 +78,8 @@ case"hit":o.x=-26*Math.sin(tau*u)*(1-u);o.rot=-18*p;o.sy=1-.15*p;o.sx=1+.15*p;o.
 }return o;}
 const rotPt=(x,y,a)=>[x*Math.cos(rad(a))-y*Math.sin(rad(a)),x*Math.sin(rad(a))+y*Math.cos(rad(a))];
 function characterState(id,opts={}){
-const d=C.find(c=>c.id===id);if(!d)throw Error("Unknown character "+id);
-const o={...d,...opts};for(const k of ["body","head","belly","hips","arms","legs"])o[k]=bounded(o[k],d[k],.55,1.9);
+const d=C.find(c=>c.id===id)||DESIGN_CANDIDATES.find(c=>c.id===id);if(!d)throw Error("Unknown character "+id);
+const o={...d,...opts,prototypeStyle:d.prototypeStyle};for(const k of ["body","head","belly","hips","arms","legs"])o[k]=bounded(o[k],d[k],.55,1.9);
 for(const k of ["skin","hair","shirt","pants","shoe","accent"])o[k]=safeColor(o[k],d[k]);
 o.view=["front","side","back"].includes(o.view)?o.view:"front";o.direction=num(o.direction,1)<0?-1:1;
 const time=num(opts.time),rx=opts.reaction?sampleReaction(opts.reaction.id,opts.reaction,opts.reaction.time??time):sampleReaction("",{},0);
@@ -89,13 +94,21 @@ function humanHeadY(o){return -52-38*o.head;}
 function smoothHumanLimb(o,sg,a,f,leg=false){
 const len=leg?o.legs:o.arms,[x,y]=directionJoint(o,sg,leg),side=o.view==="side",back=o.view==="back";
 const j=rotPt(0,28,a),v=rotPt(0,28,a+f),end=[j[0]+v[0],j[1]+v[1]],point=q=>q.map(n=>+n.toFixed(3)).join(" ");
-const d="M0 0L"+point(j)+"L"+point(end),outer=leg?20:18,inner=outer-2.5;
-const stroke=(d,c,w)=>line(d,c,w),paint=leg?o.pants:o.skin;
+const d="M0 0L"+point(j)+"L"+point(end),outer=o.prototypeStyle?(leg?25:22):leg?20:18,inner=outer-2.5;
+const stroke=(d,c,w)=>line(d,c,w),paint=leg?(o.prototypeStyle==="star"?o.skin:o.pants):o.skin;
 let art=stroke(d,ink,outer)+stroke(d,paint,inner);
+if(leg&&o.prototypeStyle==="star"){const hem=rotPt(0,25,a);art+=stroke("M0 0L"+point(hem),o.pants,inner);const sock=rotPt(0,18,a+f);art+=stroke("M"+point([j[0]+sock[0],j[1]+sock[1]])+"L"+point(end),"#fff0d0",inner);}
 if(!leg){const cuff=rotPt(0,20,a);art+=stroke("M0 0L"+point(cuff),o.shirt,inner);const n=rotPt(1,0,a),c=[cuff[0]+n[0]*(inner/2-.8),cuff[1]+n[1]*(inner/2-.8)],b=[cuff[0]-n[0]*(inner/2-.8),cuff[1]-n[1]*(inner/2-.8)];art+=line("M"+point(c)+"L"+point(b),ink,.85);}
-if(leg){const shoe=back?path("M-10 -4Q0 -8 10 -4L11 10Q0 14 -11 10Z",o.shoe,ink,1.3)+line("M-9 9Q0 11 9 9","#e2be97",1.2):side?path("M-8 -5Q2 -7 8 -1L18 3Q23 11 12 12H-9Q-12 7 -8 -5Z",o.shoe,ink,1.3)+line("M-8 9H17","#e2be97",1.2):path("M-9 -6Q0 -8 9 -6L13 5Q16 13 0 14Q-16 13 -13 5Z",o.shoe,ink,1.3)+line("M-10 10Q0 13 10 10","#e2be97",1.2);
+if(leg){let shoe=back?path("M-10 -4Q0 -8 10 -4L11 10Q0 14 -11 10Z",o.shoe,ink,1.3)+line("M-9 9Q0 11 9 9","#e2be97",1.2):side?path("M-8 -5Q2 -7 8 -1L18 3Q23 11 12 12H-9Q-12 7 -8 -5Z",o.shoe,ink,1.3)+line("M-8 9H17","#e2be97",1.2):path("M-9 -6Q0 -8 9 -6L13 5Q16 13 0 14Q-16 13 -13 5Z",o.shoe,ink,1.3)+line("M-10 10Q0 13 10 10","#e2be97",1.2);
+if(o.prototypeStyle){
+ const star=o.prototypeStyle==="star",base=star?"#fff1d9":"#b48659";
+ const form=back?"M-13 -7Q0 -13 13 -7L15 11Q0 17 -15 11Z":side?"M-11 -9Q0 -13 11 -5L21 1Q28 12 15 15H-13Q-17 6 -11 -9Z":"M-12 -8Q0 -13 12 -8L16 5Q21 16 0 17Q-21 16 -16 5Z";
+ shoe=path(form,o.shoe,ink,1.25)+path(back?"M-13 8Q0 12 13 8V12Q0 17 -13 12Z":side?"M-13 8Q6 13 21 8L17 14H-13Z":"M-15 8Q0 14 15 8L13 14Q0 18 -13 14Z",base,ink,.8);
+ if(!back)shoe+=star?path(side?"M1 -6L10 -3L8 3L-1 0Z":"M-10 -2Q0 -6 10 -2L9 3Q0 0 -9 3Z","#fff4df","none"):line(side?"M-2 -5l9 4m-10 0l9 4":"M-6 -5L6 1M6 -5L-6 1","#e9c28e",1.6);
+ if(star&&side)shoe+=group("translate(12 4) scale(.3)",designStar("#fff5d5"));
+ }
 art+=`<g data-jk-shoe="${side?"profile":back?"heel":"front"}" transform="translate(${point(end)}) rotate(${a+f})">${shoe}</g>`;}
-else{art+=group("translate("+point(end)+") rotate("+(a+f)+")",path("M-7 -5Q0 -9 7 -5Q11 0 7 8Q0 12 -7 8Q-11 0 -7 -5Z",o.skin,ink,1.25)+line("M-3 4L-2 7M2 4L3 7","#a8755e",.75));}
+else{art+=group("translate("+point(end)+") rotate("+(a+f)+")",o.prototypeStyle?path("M-9 -6Q-14 -3 -11 3Q-8 12 2 11Q12 11 11 2Q11 -7 4 -7L-2 -2Q-6 -8 -9 -6Z",o.skin,ink,1.15)+line("M2 6Q6 7 6 3","#b47b60",.8):path("M-7 -5Q0 -9 7 -5Q11 0 7 8Q0 12 -7 8Q-11 0 -7 -5Z",o.skin,ink,1.25)+line("M-3 4L-2 7M2 4L3 7","#a8755e",.75));}
 return `<g data-jk-smooth-limb="${leg?"leg":"arm"}${sg<0?"L":"R"}" transform="translate(${x} ${y}) scale(${len})">${art}</g>`;}
 
 function handLocal(o,p,side){const left=side==="handL",a=left?p.al:p.ar,f=left?p.fl:p.fr,j=rotPt(0,28*o.arms,a),k=rotPt(0,28*o.arms,a+f),origin=directionJoint(o,left?-1:1);return {point:[origin[0]+j[0]+k[0],origin[1]+j[1]+k[1]],angle:a+f};}
@@ -127,6 +140,50 @@ const hy=humanHeadY(o),headPoint=(x,y)=>{const v=rotPt(x*o.head,y*o.head,p.head)
 const pts={head:headPoint(0,-30),mouth:headPoint(o.view==="side"?22:0,19),belly:[0,-13],hips:[0,18],back:[o.view==="side"?-21:0,-15],feet:[0,80*o.legs],handL:handLocal(o,p,"handL").point,handR:handLocal(o,p,"handR").point,center:[0,0]};
 for(const k of Object.keys(pts)){let [x,y]=pts[k];[x,y]=rotPt(x*o.direction*p.sx*rx.sx,y*p.sy*rx.sy,p.rot+rx.rotation);pts[k]=[x+p.x+rx.x,y+p.y+rx.y];}return pts;
 }
+function designStar(c){return path("M0 -11L3.8 -4L11 -3L6 3L7 10L0 6L-7 10L-6 3L-11 -3L-3.8 -4Z",c,"#b88c43",.65);}
+function candidateTorso(o){
+ const star=o.prototypeStyle==="star",side=o.view==="side",back=o.view==="back",b=o.belly;
+ let art=path(side?`M-14 -48Q-30 -42 -27 -15Q-25 10 -18 18Q3 27 24 16Q${32*b} -5 23 -31Q16 -47 8 -48Z`:`M-21 -49Q-36 -46 -35 -23Q${-37*b} 0 -26 20Q0 31 26 20Q${37*b} 0 35 -23Q36 -46 21 -49Z`,o.shirt,ink,1.4);
+ art+=path(side?"M-15 -42Q-23 -24 -16 4L-12 11L-7 -42Z":"M-26 -40Q-31 -19 -23 6L-15 12L-14 -40Z","#ffffff40","none");
+ art+=line(side?"M-8 -46Q4 -38 15 -44":"M-15 -47Q0 -35 15 -47",star?"#e6ac42":"#c8a47b",3);
+ if(star){
+  art+=path(side?"M-14 -46L-5 -44L3 -26L18 -23Q29 -4 24 20Q1 30 -22 19L-19 -5L-8 -28Z":back?"M-25 -46L-15 -46L-11 -29H11L15 -46H25L23 -26L31 13Q30 26 0 27Q-30 26 -31 13L-23 -26Z":"M-25 -46L-15 -46L-12 -25H12L15 -46H25L23 -25L31 14Q31 27 0 27Q-31 27 -31 14L-23 -25Z",o.pants,ink,1.5);
+  if(back){art+=rect(-23,-2,18,15,4,"#88a7c8","#587a9e",.9)+rect(5,-2,18,15,4,"#88a7c8","#587a9e",.9)+line("M0 3V24","#587a9e",1.2);}
+  else if(side){art+=rect(5,-17,13,19,3,"#88a7c8","#587a9e",.9)+ellipse(-1,-29,4.6,4.6,o.accent,"#ae813d",.9)+group("translate(9 -8) scale(.55)",designStar(o.accent));}
+  else {art+=rect(-18,-18,36,25,7,"#88a7c8","#587a9e",1.2)+group("translate(0 -6) scale(.86)",designStar(o.accent))+ellipse(-17,-30,5,5,o.accent,"#ae813d",1)+ellipse(17,-30,5,5,o.accent,"#ae813d",1)+ellipse(-2.5,-6,1,1,"#664c36")+ellipse(2.5,-6,1,1,"#664c36")+line("M-2 -2Q0 0 2 -2","#664c36",.8);}
+  art+=line(side?"M-21 19Q1 25 23 19":"M-29 19Q0 28 29 19","#a9bfd5",4);
+ }else{
+  art+=path(side?"M-13 -47L0 -42L12 -22L22 16L-22 19L-18 -16Z":back?"M-27 -45Q0 -35 27 -45L31 18Q0 30 -31 18Z":"M-27 -45L-11 -37L-4 19L-29 18ZM27 -45L11 -37L4 19L29 18Z",o.accent,ink,1.5);
+  if(!back){art+=path(side?"M0 -47L13 -42L6 -30Z":"M-15 -48L-4 -37L-15 -32L-21 -43ZM15 -48L4 -37L15 -32L21 -43Z","#ffefd0","#9d815d",.8);art+=ellipse(side?11:8,-13,2.8,2.8,"#e5b96c",ink,.7)+ellipse(side?12:8,1,2.8,2.8,"#e5b96c",ink,.7);}
+  else art+=line("M0 -34V6M-5 15l10 -7m-10 0l10 7","#e2ad72",1.5);
+  art+=line(side?"M9 -44L-19 17":back?"M-24 -44L25 19":"M24 -43L-23 19","#805434",5.5);
+  const bag=group(side?"translate(-18 13)":back?"translate(25 13)":"translate(-25 13)",path("M-7 -10Q-11 -18 0 -14Q11 -18 7 -10Q23 0 15 14Q0 23 -15 14Q-23 0 -7 -10Z","#d9a454",ink,1.2)+line("M-8 -10Q0 -7 8 -10","#875b38",1.5)+path("M-7 5Q-2 -7 9 -3Q9 9 -3 10Z","#789252","#596b40",.8)+line("M-4 10L6 -1","#596b40",.8));
+  art+=bag;
+ }
+ return art;
+}
+function candidateFace(o,p,rx){
+ const side=o.view==="side",back=o.view==="back",star=o.prototypeStyle==="star",skin=o.skin,hair=o.hair;
+ const face=side?"M-31 -20Q-38 -50 -12 -62Q20 -68 32 -38L34 -12Q45 -7 42 1L35 5Q36 25 15 35Q-8 43 -27 25Q-42 8 -31 -20Z":"M-39 -22Q-43 -56 0 -61Q43 -56 39 -22L38 12Q35 40 0 40Q-35 40 -38 12Z";
+ const hairBack="M-40 -4Q-51 -25 -43 -47Q-40 -69 -15 -72Q0 -84 18 -72Q46 -71 48 -47Q58 -26 43 -6Q42 26 19 35Q0 43 -22 35Q-47 24 -40 -4Z";
+ let art=path(hairBack,hair,ink,1.4);
+ art+=ellipse(-37,1,10,13,skin,ink,1.1)+(!side?ellipse(37,1,10,13,skin,ink,1.1):"");
+ if(!back){
+  art+=path(face,skin,ink,1.3)+path("M-30 -19Q-31 -43 -15 -51L-20 13Q-14 30 -3 33Q-24 32 -30 17Z","#fff4df45","none");
+  const hairFront=side?"M-42 -10Q-53 -32 -38 -51Q-27 -74 0 -72Q26 -79 40 -49Q54 -38 40 -29Q20 -41 12 -32Q-2 -10 -15 -25Q-23 -10 -42 -10Z":"M-42 -11Q-54 -29 -41 -49Q-45 -68 -22 -65Q-5 -80 16 -70Q41 -75 48 -50Q58 -34 41 -17Q29 -20 23 -36Q7 -20 -5 -36Q-19 -12 -27 -31Q-34 -16 -42 -11Z";
+  art+=path(hairFront,hair,ink,1.4)+line("M-31 -48Q-15 -65 0 -58M8 -60Q25 -62 36 -47","#b97850",2.6);
+  if(star)art+=path("M-6 -68Q-11 -87 13 -82Q27 -75 14 -66Q7 -74 -6 -68Z",hair,ink,1.3);
+  const eyes=side?[18]:[-16,16],eyeH=7.4*Math.max(.07,p.eye)*(p.face==="surprise"?1.25:1);
+  for(const x of eyes){if(eyeH<1.2){art+=line("M"+(x-6)+" -7q6 4 12 0","#5b382f",2);continue;}art+=ellipse(x,-7,7.6,eyeH,"#fff9e9","#754a36",.8)+ellipse(x+.7,-6,5.7,eyeH*.84,"#61402f")+ellipse(x+.7,-5,3.5,eyeH*.65,"#392c28")+ellipse(x-1.4,-10,1.8,1.9,"#fff")+line(p.face==="angry"?"M"+(x-7)+" -20l13 4":"M"+(x-7)+" -20q7 -5 14 0",hair,2.5);}
+  art+=ellipse(side?24:0,7,3.7,2.5,"#df9c74")+ellipse(side?18:-26,12,6,3.8,"#e79a826f")+(!side?ellipse(26,12,6,3.8,"#e79a826f"):"");
+  if(!star)for(const x of side?[19,23,27]:[-27,-23,-19,19,23,27])art+=ellipse(x,9+(Math.abs(x)%3),.8,.8,"#b77956");
+  const mx=side?21:0,smile=p.face==="smile"&&star;
+  art+=p.face==="sad"?line("M"+(mx-7)+" 24q7 -9 14 0","#79443a",2):p.face==="strain"?line("M"+(mx-7)+" 21h14","#79443a",2):p.face==="surprise"||p.face==="o"?ellipse(mx,21,5.5,7,"#854537"):p.face==="happy"||smile?path("M"+(mx-10)+" 17q10 5 20 0q-2 14 -10 14q-8 0 -10 -14Z","#873e31",ink,.7)+ellipse(mx,27,5,2.4,"#e68d7c"):line("M"+(mx-8)+" 18q8 8 16 0","#79443a",2.3);
+ }else{art+=path(hairBack,hair,ink,1.3)+line("M-27 -44Q-36 -8 -21 21M-4 -58Q-15 -13 1 30M19 -55Q35 -17 21 24","#b97850",2.4);if(star)art+=path("M-6 -68Q-11 -87 13 -82Q27 -75 14 -66Q7 -74 -6 -68Z",hair,ink,1.3);}
+ if(!star){art+=path(side?"M-46 -47Q-46 -82 -11 -81Q24 -83 42 -55Q32 -48 7 -49Z":back?"M-47 -44Q-47 -80 0 -84Q47 -80 47 -44Q0 -27 -47 -44Z":"M-47 -46Q-47 -80 0 -83Q47 -80 47 -46Q0 -55 -47 -46Z","#7d8b4e",ink,1.5);if(!back)art+=path(side?"M-9 -49Q26 -64 50 -50Q39 -39 1 -44Z":"M-45 -46Q0 -59 45 -46L48 -39Q0 -49 -48 -39Z","#a4a66a",ink,1.2);art+=group(side?"translate(-20 -64) rotate(-18)":back?"translate(14 -65) rotate(16)":"translate(-23 -63) rotate(-16)",rect(-8,-7,16,14,2,"#d8aa65","#9d7549",.8)+line("M-6 -9v4M6 -9v4M-6 5v4M6 5v4","#8d633c",.8));}
+ if(rx.tint&&!back)art+=path(face,rx.tint.color,"none",0).replace("<path ",`<path opacity="${rx.tint.opacity}" `);
+ return `<g data-design-candidate="${o.prototypeStyle}" data-design-view="${o.view}">${art}</g>`;
+}
 function drawCharacter(id,opts={}){
 if(C.find(c=>c.id===id)?.species)return animalRig(id,opts).svg;
 const {o,p,rx}=characterState(id,opts),side=o.view==="side",back=o.view==="back",bw=o.body*(side?.72:1),skin=o.skin,hair=o.hair,shirt=o.shirt,pants=o.pants,shoe=o.shoe,accent=o.accent;
@@ -136,6 +193,7 @@ if(o.hairStyle==="boy")torso+=path("M-15 -46L-9 -32L9 -32L15 -46L19 12H-19Z","#b
 else if(["bun","braid"].includes(o.hairStyle))torso+=path("M-10 -44L-17 -12L-24 19Q0 29 24 19L17 -12L10 -44Z",accent)+path("M-13 0Q0 -5 13 0L11 12Q0 16 -11 12Z","#fff1cf")+line("M-16 -17H16M-19 18Q0 24 19 18","#b28a62",1.5);
 else torso+=path("M-23 -46L-10 -33L-5 14L-25 11Z",accent)+path("M23 -46L10 -33L5 14L25 11Z",accent)+rect(-25,8,50,8,3,"#785a44")+rect(-5,7,10,10,2,"#e7bc62")+line("M-15 -16L-10 -12M10 -12L15 -16","#f9e2af",1.5);
 if(side||back)torso=directionalTorso(o);
+if(o.prototypeStyle)torso=candidateTorso(o);
 let face="";
 const headshape=side?"M-31 -20Q-36 -53 -3 -60Q28 -60 32 -35L35 -13Q43 -5 42 1L33 5Q32 27 14 34Q-9 42 -27 25Q-39 12 -31 -20Z":"M-38 -18Q-40 -56 0 -59Q40 -56 38 -18L36 14Q33 38 0 40Q-33 38 -36 14Z";
 face+=ellipse(-37,0,7,11,skin,ink)+(!side?ellipse(37,0,7,11,skin,ink):"")+path(headshape,skin)+path("M-30 -22Q-34 -44 -15 -48L-22 14Q-16 29 -6 34Q-27 33 -31 17Z","#ffffff20","none");
@@ -156,6 +214,7 @@ if(p.face==="sad")face+=path("M-16 -1Q-22 11 -16 13Q-10 11 -16 -1Z","#8ccfe0","n
 if(["bun","braid"].includes(o.hairStyle)){face=ellipse(0,-62,19,16,hair,ink)+face;if(o.hairStyle==="braid")face+=group("translate(31 10)",path("M-7 0Q13 7 6 19Q15 28 4 38Q10 46 0 55Q-11 46 -5 36Q-15 29 -6 18Q-15 7 -7 0Z",hair)+line("M-4 8L5 15M-5 25L4 33","#d69b6f",2)+rect(-5,45,10,6,2,accent));}
 if(rx.tint&&!back)face+=path(headshape,rx.tint.color,"none",0).replace("<path ",`<path opacity="${rx.tint.opacity}" `);
 if(back&&["boy","hat"].includes(o.hairStyle))face+=o.hairStyle==="boy"?path("M-40 -42Q-31 -73 8 -72Q38 -68 40 -43Q0 -48 -40 -42Z",accent)+line("M-28 -43Q0 -38 28 -43","#e5a05e",3):path("M-32 -53L-24 -78Q0 -88 23 -77L33 -53Z","#927153")+path("M-47 -55Q0 -65 47 -55Q51 -45 38 -43H-38Q-51 -45 -47 -55Z","#b18b60");
+if(o.prototypeStyle)face=candidateFace(o,p,rx);
 const hy=humanHeadY(o),neck=path(`M${-9*o.body} ${hy+20*o.head}Q0 ${hy+23*o.head} ${9*o.body} ${hy+20*o.head}L${11*o.body} -43Q0 -38 ${-11*o.body} -43Z`,skin,ink,1.3),head=group(`translate(0 ${hy}) rotate(${p.head}) scale(${o.head})`,face);
 const near=side?1:.96;
 const quiet=["idle","blink","walk","run","sneak","sit","sleep","lie","snore"].includes(opts.motion||"idle");
@@ -702,7 +761,7 @@ function mount(host,mode,extra={}){if(!host||host.dataset.storyMounted)return;ho
 const style=doc.createElement("style");style.textContent=".jk-story{color:#3e4c44;padding:14px}.jk-story h2{margin:0 0 9px;font-size:20px}.jk-story-grid{display:grid;grid-template-columns:minmax(150px,230px) minmax(0,1fr) minmax(180px,260px);gap:12px}.jk-story-card{min-width:0;background:#fffdf6;border:1px solid #deded4;border-radius:12px;padding:12px}.jk-story-list{display:grid;gap:6px;max-height:62vh;overflow:auto}.jk-story-list button{padding:9px;text-align:left;overflow-wrap:anywhere}.jk-story-list button[aria-pressed=true]{background:#dfeee0;border-color:#78a486}.jk-story-stage{background:linear-gradient(#edf3e6 0 76%,#e3d4b9 76%);border-radius:12px;min-height:250px;aspect-ratio:1.3;overflow:hidden;display:grid;place-items:center}.jk-story-stage svg,.jk-story-stage canvas{width:100%;height:100%;display:block;max-height:480px;object-fit:contain}.jk-story-control{display:grid;gap:3px;margin:7px 0;font-size:13px}.jk-story-control input,.jk-story-control select{max-width:100%;width:100%;min-width:0;accent-color:#51866b}.jk-story-toolbar{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.jk-story-note{font-size:13px;color:#647466;overflow-wrap:anywhere}.jk-story-card button{min-height:36px}@media(max-width:850px){.jk-story-grid{grid-template-columns:145px minmax(0,1fr)}.jk-story-grid>.jk-story-card:last-child{grid-column:1/-1}}@media(max-width:550px){.jk-story-grid{display:flex;flex-direction:column}.jk-story-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-height:160px}.jk-story-stage{min-height:230px}.jk-story{padding:6px}}";
 doc.head.append(style);host.classList.add("jk-story");host.innerHTML='<div class="jk-story-grid"><div class="jk-story-card"><h2>에셋</h2><div class="jk-story-list"></div></div><div class="jk-story-card"><h2 class="jk-story-name"></h2><div class="jk-story-stage"></div><div class="jk-story-toolbar"><button data-story="play">정지 / 재생</button><button data-story="reset">다시 시작</button><button data-story="export">JSON 저장</button><button data-story="svg">SVG 저장</button></div><p class="jk-story-note" role="status"></p></div><div class="jk-story-card"><h2>편집</h2><div class="jk-story-controls"></div></div></div>';
 const $=s=>host.querySelector(s),list=$(".jk-story-list"),stage=$(".jk-story-stage"),controls=$(".jk-story-controls"),note=$(".jk-story-note");
-let entries=mode==="characters"?C:mode==="objects"?O:mode==="reactions"?reactions:mode==="backgrounds"?bg:mode==="sounds"?[...SFX,...BGM]:FX.catalog;
+let entries=mode==="characters"?(extra.designCandidates?[...DESIGN_CANDIDATES]:C):mode==="objects"?O:mode==="reactions"?reactions:mode==="backgrounds"?bg:mode==="sounds"?[...SFX,...BGM]:FX.catalog;
 let selected=entries[0],opts={},playing=true,elapsed=0,last=performance.now(),rendered=0,engine=null,context=null,mixIds=[],bgmId=null,activeSound=false,disposed=false;
 const make=(tag,text)=>{const e=doc.createElement(tag);if(text)e.textContent=text;return e;};
 const download=(data,name,type)=>{const url=URL.createObjectURL(new Blob([data],{type})),a=make("a");a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
@@ -737,6 +796,6 @@ $('[data-story="svg"]').onclick=()=>{if(mode!=="sounds")download(markup(),select
 if(mode==="sounds")$('[data-story="svg"]').hidden=true;
 function frame(now){if(disposed)return;const dt=Math.min(.1,Math.max(0,(now-last)/1000));last=now;if(!host.hidden&&host.isConnected&&host.getClientRects().length){if(mode==="sounds"&&engine){const level=engine.level();peakSeen=Math.max(peakSeen,level.peak);const m=host.querySelector("[data-sound-meter]");if(m)m.value=level.peak;if(activeSound&&!bgmId&&!level.nodes){activeSound=false;soundStatus("재생 완료 · 실제 최대 출력 "+Math.round(peakSeen*100)+"%");}}if(playing){elapsed+=dt;if(now-(frame.last||0)>32){paint();frame.last=now;}}}else if(activeSound){stopAudio();}doc.defaultView.requestAnimationFrame(frame);}
 reset(selected);if(mode==="backgrounds")mountScenePreview(host);doc.defaultView.requestAnimationFrame(frame);host.storyController={getConfig:()=>config(mode,selected.id,{...opts}),select(id){const d=entries.find(x=>x.id===id);if(d)reset(d);},set(key,value){opts[key]=value;build();paint();},stop(){playing=false;stopAudio();},dispose(){disposed=true;host.episodePreview?.dispose();engine?.dispose();context?.close();},diagnostic:()=>({rendered,selected:selected.id,mode,elapsed,activeSound,peakSeen,audio:engine?.level()??null})};return host.storyController;}
-const kit={version:"1.2.1",directionRevision:"full-body-v1",bodyRevision:"continuous-limbs-v1",animalDirectionRevision:"species-views-v2",animalArtRevision:"anatomy-v3",guideCue,successCue,wolfWind,materialResponse,raceFeedback,stackGuide,bremenMixPCM,episodeSpecs:EPISODE_SPECS,animalRig,houseSlots,createHouseState,assembleHouse,advanceHouse,houseFrame,createRaceState,advanceRace,stackAnimals,bremenMix,createEpisodeState,episodeInput,advanceEpisode,episodeSceneFrame,fartProfiles:FART_PROFILES,makeFartPCM,soundProfiles:SOUND_PROFILES,makeSoundPCM,characters:C,objects:O,reactions,backgrounds:bg,sounds:SFX,bgm:BGM,effects:FX.catalog,motions:[...oldMotions,...newMotions],newMotions,motionNames,pose,sampleReaction,drawCharacter,characterAnchors,drawAsset,assetAnchors,backgroundLayers,backgroundSVG,drawEffect:FX.draw,createEffectRuntime,audioEngine,renderSound,config,svgFor,mount,characterAttachments,characterProjectiles,motionEvents,vinePoint,vineSegment,vineWindow,climbPlacement,sceneProfiles,sceneFrame,sceneSVG:(id,time,opts)=>sceneFrame(id,time,opts).svg};
+const kit={version:"1.2.1",designRevision:"human-candidates-v1",designCandidates:DESIGN_CANDIDATES,directionRevision:"full-body-v1",bodyRevision:"continuous-limbs-v1",animalDirectionRevision:"species-views-v2",animalArtRevision:"anatomy-v3",guideCue,successCue,wolfWind,materialResponse,raceFeedback,stackGuide,bremenMixPCM,episodeSpecs:EPISODE_SPECS,animalRig,houseSlots,createHouseState,assembleHouse,advanceHouse,houseFrame,createRaceState,advanceRace,stackAnimals,bremenMix,createEpisodeState,episodeInput,advanceEpisode,episodeSceneFrame,fartProfiles:FART_PROFILES,makeFartPCM,soundProfiles:SOUND_PROFILES,makeSoundPCM,characters:C,objects:O,reactions,backgrounds:bg,sounds:SFX,bgm:BGM,effects:FX.catalog,motions:[...oldMotions,...newMotions],newMotions,motionNames,pose,sampleReaction,drawCharacter,characterAnchors,drawAsset,assetAnchors,backgroundLayers,backgroundSVG,drawEffect:FX.draw,createEffectRuntime,audioEngine,renderSound,config,svgFor,mount,characterAttachments,characterProjectiles,motionEvents,vinePoint,vineSegment,vineWindow,climbPlacement,sceneProfiles,sceneFrame,sceneSVG:(id,time,opts)=>sceneFrame(id,time,opts).svg};
 globalThis.JKStoryKit=kit;if(typeof module!=="undefined"&&module.exports)module.exports=kit;
 })();
