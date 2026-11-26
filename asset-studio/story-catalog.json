@@ -3086,5 +3086,350 @@
     "mainSha": "b57e36aef2df02d161346e457845ff02da38d665",
     "manifest": "docs/story-arcade/SELECTION_THUMBNAILS.md",
     "status": "selection screenshot crops only; rights unverified; no embedded reference image"
+  },
+  "directionRevisionV2": "toddler-direction-v2",
+  "directionPresets": {
+    "tap": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "tap",
+      "gesture": "tap",
+      "before": {
+        "motion": "guide",
+        "effect": "pulse",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": false,
+        "ghost": false,
+        "sound": "story.bird",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "repeat": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "repeat",
+      "gesture": "repeat",
+      "before": {
+        "motion": "guide",
+        "effect": "particles",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": false,
+        "ghost": false,
+        "sound": "story.bounce",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "drag": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "drag",
+      "gesture": "drag",
+      "before": {
+        "motion": "stack-ready",
+        "effect": "path",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": true,
+        "ghost": true,
+        "sound": "story.harp",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "hold": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "hold",
+      "gesture": "hold",
+      "before": {
+        "motion": "ready",
+        "effect": "outline",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": false,
+        "ghost": false,
+        "sound": "story.bounce",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "swipe": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "swipe",
+      "gesture": "swipe",
+      "before": {
+        "motion": "guide",
+        "effect": "path",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": true,
+        "ghost": false,
+        "sound": "story.step",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "join": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "join",
+      "gesture": "tap",
+      "before": {
+        "motion": "guide",
+        "effect": "glow",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": false,
+        "ghost": false,
+        "sound": "story.donkey",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "window": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "window",
+      "gesture": "tap",
+      "before": {
+        "motion": "guide",
+        "effect": "glow",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": false,
+        "ghost": false,
+        "sound": "story.harp",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "stack": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "stack",
+      "gesture": "drag",
+      "before": {
+        "motion": "stack-ready",
+        "effect": "silhouette",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": true,
+        "ghost": true,
+        "sound": "story.bounce",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    },
+    "concert": {
+      "schema": "suaveforge.story.direction.v2",
+      "id": "concert",
+      "gesture": "tap",
+      "before": {
+        "motion": "guide",
+        "effect": "particles",
+        "intensity": 0.8,
+        "delay": 0,
+        "interval": 1.6,
+        "hand": true,
+        "arrow": false,
+        "ghost": false,
+        "sound": "story.bird",
+        "volume": 0.26,
+        "pitch": 1,
+        "radius": 68,
+        "maxSteps": 3
+      },
+      "contact": {
+        "motion": "ready",
+        "effect": "story.star-orbit",
+        "sound": "story.bounce",
+        "intensity": 0.65,
+        "volume": 0.32,
+        "pitch": 1,
+        "duration": 0.3
+      },
+      "result": {
+        "motion": "celebrate",
+        "effect": "story.star-orbit",
+        "sound": "story.wood-hit",
+        "intensity": 0.85,
+        "volume": 0.5,
+        "pitch": 1,
+        "duration": 0.85
+      }
+    }
   }
 }
