@@ -297,6 +297,7 @@ const worlds={village:{title:'놀이마을',emblem:'✿',ids:[0,1,2]},story:{tit
 document.querySelectorAll('[data-sticker]').forEach(el=>{const n=+el.dataset.sticker;const source=allCards[n].querySelector('img.sprite');const img=document.createElement('img');img.src=source.src;img.alt='';img.draggable=false;el.append(img)});
 
 const roleBays=[...document.querySelectorAll('.role-bay')], detailRoles=document.querySelector('#detail-roles'), travel=document.querySelector('#world-transition'), travelArt=travel.querySelector('.travel-art');
+travelArt.src=heroArt.querySelector('img').src;
 const roleInfo={professor:['✦',[523,659,784]],chef:['🥭',[392,523,659]],pig:['♥',[523,784]],pirate:['✧',[330,440,587]],wizard:['✦',[659,784,1047]],explorer:['♪',[440,587,784]]};
 document.querySelectorAll('[data-role]').forEach(el=>el.addEventListener('click',()=>{const info=roleInfo[el.dataset.role];el.querySelector('.role-reaction').textContent=info[0];react(el,'cheer');tone(info[1]);resetIdle();document.querySelector('#status').textContent=el.getAttribute('aria-label')}));
 function arrangeRoles(name){roleBays.forEach(b=>{const show=name==='home'||b.dataset.bay===name;b.hidden=!show;(name==='home'||!show?entrance:detailRoles).append(b)})}
