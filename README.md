@@ -1,5 +1,9 @@
 # JumperKids — PUBLIC server123 deployment repository
 
+## Current ingress (2026-11-28)
+
+All three existing JumperKids HTTPS hostnames use Nginx on standard port 443. No DNS change or port suffix is needed. The former Caddy routes were removed and the legacy deployment entrypoints no longer edit the gateway. The historical deployment notes below describe earlier architecture, not current operational instructions. Use `scripts/verify-nginx-server123.sh main|visual|api` after application deployment.
+
 **Deliberate architecture:** `suaveforge/jumperkids` is PRIVATE source; `suaveforge/jumperkids-deploy` is PUBLIC deployment scripts plus a deliberately public **standalone 2.5D preview artifact**. The playable 3D art-preview source is in the PRIVATE repository and its reviewed browser bundle is deployed from server123.
 
 ## Live preview deployment
@@ -37,7 +41,7 @@
 
 **Back-end:** `api-jumperkids3d.suaveforge.com` is a separate legacy HYTOPIA 3D technical server and is *not yet connected* to the new Three.js play preview. The adult Jumper and earlier `jumperkids.suaveforge.com` 2.5D preview are independent and unchanged.
 
-**Current and ONLY approved Caddy release command:** `bash scripts/deploy-visual-3d-caddy-server123.sh`, run after the private build and browser QA. The older `scripts/promote-artstudio-server123.sh` and `scripts/configure-open-3d-caddy-server123.sh` are obsolete and MUST NOT be run; their corresponding deployment workflows have been removed to prevent rollback to rejected demo scenes. This PUBLIC repository must not receive private source code, credentials, child data, or secret tokens.
+**Current approved verification command:** `bash scripts/verify-nginx-server123.sh visual`, run after the private build and browser QA. The older `scripts/promote-artstudio-server123.sh` and `scripts/configure-open-3d-caddy-server123.sh` are obsolete and MUST NOT be run; their corresponding deployment workflows have been removed to prevent rollback to rejected demo scenes. This PUBLIC repository must not receive private source code, credentials, child data, or secret tokens.
 
 **Verification and known limits:** [real public desktop and mobile full five-stage journey run 44267742649](https://github.com/suaveforge/jumperkids/actions/runs/44267742649) **SUCCESS**: actual joystick/keyboard play, egg hatching, 3 unique berries, real 3D bakery cake, 3D house decoration and ending all passed. Screenshots artifact ID `14410742736`. This is mobile Chromium emulation, not real phone hardware. Guardian consent, durable sessions, parent observations, real MMO packet sync and proper educational content are incomplete. This is a zero-login technical preview, not a completed children-facing product.
 
